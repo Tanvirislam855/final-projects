@@ -23,11 +23,11 @@ export default function MarketplaceStats() {
       <div className="container mx-auto px-4">
         {/* Heading */}
         <div className="max-w-xl">
-          <h2 className="text-5xl font-bold tracking-tight text-[#161616]">
+          <h2 className="section-title text-[#161616]">
             Marketplace Statistics
           </h2>
 
-          <p className="mt-4 text-xl text-[#7A7A7A]">
+          <p className="mt-4 section-subtitle">
             A snapshot of community activity this quarter.
           </p>
         </div>

@@ -16,11 +16,11 @@ export default function HeroSection() {
               </span>
             </div>
 
-            <h1 className="mt-8 max-w-xl text-5xl font-bold leading-tight lg:text-7xl">
+            <h1 className="mt-8 max-w-xl section-title lg:text-7xl leading-tight">
               Marketplace for items that deserve a second life.
             </h1>
 
-            <p className="mt-8 max-w-xl text-lg leading-8 text-muted-foreground">
+            <p className="mt-8 max-w-xl section-subtitle leading-8">
               Buy and sell pre-owned electronics, furniture, and fashion.
               Reducing waste by keeping quality goods in circulation.
             </p>

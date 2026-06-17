@@ -35,7 +35,7 @@ export default function SuccessStories() {
             Success Stories
           </p>
 
-          <h2 className="text-5xl font-bold tracking-tight text-[#181818]">
+          <h2 className="section-title text-[#181818]">
             From the community
           </h2>
         </div>

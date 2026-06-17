@@ -34,11 +34,11 @@ export default function TopRatedSellers() {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="max-w-2xl">
-          <h2 className="lg:text-5xl md:text-3xl text-2xl font-bold tracking-tight text-[#161616]">
+          <h2 className="section-title text-[#161616]">
             Top Rated Sellers
           </h2>
 
-          <p className="mt-4 text-xl text-[#727272]">
+          <p className="mt-4 section-subtitle text-[#727272]">
             Vetted by the community for fair pricing and prompt shipping.
           </p>
         </div>
