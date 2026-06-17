@@ -13,6 +13,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import Logo from "../shared/Logo";
 
 const items = [
   {
@@ -33,7 +34,7 @@ export function DashboardSidebar() {
   return (
     <Sidebar>
       <SidebarHeader className="p-4">
-        <h2 className="text-xl font-bold">My App</h2>
+        <h2 className="text-xl font-bold"><Logo/></h2>
       </SidebarHeader>
 
       <SidebarContent>

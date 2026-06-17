@@ -26,7 +26,7 @@ emailAndPassword: {
   user:{
     additionalFields:{
       role:{
-        defaultValue:'student'
+        defaultValue:'buyer'
       },
       plan:{
         defaultValue:'free'

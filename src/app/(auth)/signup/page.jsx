@@ -14,6 +14,8 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { redirect } from "next/navigation";
+import { Eye, EyeOff } from "lucide-react";
+
 const SignUpPage = () => {
   const [form, setForm] = useState({
     name: "",
@@ -22,18 +24,45 @@ const SignUpPage = () => {
     confirmPassword: "",
   });
   const [roleState, setRoleState] = useState('')
-
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    if (error) setError(""); // Clear error when typing
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { name, email, password } = form;
-    const {data : session} = await authClient.signUp.email({ name, email, password, role: roleState, plan: 'free' });
-    if(session.user){
-      redirect('/')
+    setError("");
+    const { name, email, password, confirmPassword } = form;
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
+    // Basic validation: 1 uppercase, 1 number
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasNumber = /\d/.test(password);
+
+    if (!hasUpperCase || !hasNumber) {
+      setError("Password must contain at least 1 uppercase letter and 1 number.");
+      return;
+    }
+
+    try {
+      const {data : session, error: apiError} = await authClient.signUp.email({ name, email, password, role: roleState, plan: 'free' });
+      if (apiError) {
+        setError(apiError.message || "An error occurred during sign up.");
+        return;
+      }
+      if(session?.user){
+        redirect('/')
+      }
+    } catch (err) {
+      setError("Something went wrong. Please try again.");
     }
   };
 
@@ -53,6 +82,12 @@ const SignUpPage = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
+          {error && (
+            <div className="rounded-md bg-destructive/15 p-3 text-sm text-destructive">
+              {error}
+            </div>
+          )}
+
           <div>
             <label htmlFor="name" className="text-sm font-medium">
               Name
@@ -84,37 +119,70 @@ const SignUpPage = () => {
               placeholder="you@example.com"
             />
           </div>
+          {/* image */}
+          <div>
+            <label htmlFor="email" className="text-sm font-medium">
+              Image URl
+            </label>
+            <input
+              id="image"
+              name="image"
+              type="text"
+              value={form.image}
+              onChange={handleChange}
+              className="mt-1 block w-full rounded-lg border border-input bg-background px-3 py-2 text-sm outline-none ring-ring focus-visible:ring-2"
+              placeholder="https://example.com/image.jpg"
+            />
+          </div>
 
           <div>
             <label htmlFor="password" className="text-sm font-medium">
               Password
             </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              required
-              value={form.password}
-              onChange={handleChange}
-              className="mt-1 block w-full rounded-lg border border-input bg-background px-3 py-2 text-sm outline-none ring-ring focus-visible:ring-2"
-              placeholder="••••••••"
-            />
+            <div className="relative mt-1">
+              <input
+                id="password"
+                name="password"
+                type={showPassword ? "text" : "password"}
+                required
+                value={form.password}
+                onChange={handleChange}
+                className="block w-full rounded-lg border border-input bg-background px-3 py-2 pr-10 text-sm outline-none ring-ring focus-visible:ring-2"
+                placeholder="••••••••"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground focus:outline-none"
+              >
+                {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+              </button>
+            </div>
           </div>
 
           <div>
             <label htmlFor="confirmPassword" className="text-sm font-medium">
               Confirm Password
             </label>
-            <input
-              id="confirmPassword"
-              name="confirmPassword"
-              type="password"
-              required
-              value={form.confirmPassword}
-              onChange={handleChange}
-              className="mt-1 block w-full rounded-lg border border-input bg-background px-3 py-2 text-sm outline-none ring-ring focus-visible:ring-2"
-              placeholder="••••••••"
-            />
+            <div className="relative mt-1">
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type={showConfirmPassword ? "text" : "password"}
+                required
+                value={form.confirmPassword}
+                onChange={handleChange}
+                className="block w-full rounded-lg border border-input bg-background px-3 py-2 pr-10 text-sm outline-none ring-ring focus-visible:ring-2"
+                placeholder="••••••••"
+              />
+              <button
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground focus:outline-none"
+              >
+                {showConfirmPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+              </button>
+            </div>
           </div>
 
           <Select onValueChange={value => { setRoleState(value) }}>
@@ -124,11 +192,8 @@ const SignUpPage = () => {
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>Select a role</SelectLabel>
-                <SelectItem value="apple">Apple</SelectItem>
-                <SelectItem value="banana">Banana</SelectItem>
-                <SelectItem value="blueberry">Blueberry</SelectItem>
-                <SelectItem value="grapes">Grapes</SelectItem>
-                <SelectItem value="pineapple">Pineapple</SelectItem>
+                <SelectItem value="buyer">Buyer</SelectItem>
+                <SelectItem value="seller">Seller</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>

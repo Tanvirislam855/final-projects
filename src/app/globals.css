@@ -4,6 +4,19 @@
 
 @custom-variant dark (&:is(.dark *));
 
+.btn-primary {
+  background: #3E5F47;
+  color: white;
+  border-radius: 9999px;
+  padding: 12px 28px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #2F4A37;
+}
+
 @theme inline {
     --font-heading: var(--font-sans);
     --font-sans: var(--font-sans);
@@ -120,10 +133,10 @@
   * {
     @apply border-border outline-ring/50;
     }
-  body {
+  /* body {
     @apply bg-background text-foreground;
-    }
-  html {
+    } */
+  /* html {
     @apply font-sans;
-    }
+    } */
 }
