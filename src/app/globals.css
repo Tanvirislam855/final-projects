@@ -149,4 +149,19 @@
   .section-subtitle {
     @apply mt-4 text-base md:text-xl text-muted-foreground;
   }
+
+  /* Center Sonner Toaster in the middle of the screen */
+  .toaster {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: auto !important;
+    z-index: 9999 !important;
+    pointer-events: none;
+  }
+
+  .toaster .cn-toast {
+    pointer-events: auto;
+  }
 }

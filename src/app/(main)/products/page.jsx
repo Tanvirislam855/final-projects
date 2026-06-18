@@ -3,7 +3,7 @@ import { serverFetch } from "@/lib/core/server";
 
 
 export default async function ProductsPage() {
-    const products = await serverFetch('/api/products')
+    const products = await serverFetch('/api/products');
     return (
         <section className="container mx-auto px-4 py-20">
             <div className="mb-10">

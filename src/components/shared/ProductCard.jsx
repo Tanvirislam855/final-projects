@@ -1,11 +1,37 @@
+'use client'
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Heart, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { addToWishList } from "@/lib/actions/wishlist";
+import ShowToast from "@/components/shared/ShowToast";
+
 
 export default function ProductCard({ product }) {
+  const [toastProps, setToastProps] = useState(null);
+
+  const handleAddWishList = async (data) => {
+    try {
+      const addInWishList = await addToWishList(data);
+      console.log(addInWishList);
+      
+
+      if (addInWishList?.insertedId) {
+        setToastProps({ message: "Added to wishlist", type: "success" });
+      } 
+      
+      if(addInWishList.meg){
+        setToastProps({ message: addInWishList.meg  ,type:"error"});
+      }
+    } catch (err) {
+      setToastProps({ message: err?.message || "Failed to add to wishlist", type: "error" });
+    }
+
+  }
   return (
     <div className="group overflow-hidden rounded-3xl border bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+      {toastProps && <ShowToast {...toastProps} />}
       {/* Image */}
       <div className="relative h-64 overflow-hidden">
         <Image
@@ -55,19 +81,20 @@ export default function ProductCard({ product }) {
         </div>
 
         <div className="flex gap-3">
-           <form className="w-full" action="/api/checkout_sessions" method="POST">
-              <input
-                type="hidden"
-                name="productId"
-                value={product._id}
-              />
-              <Button type="submit" size="lg" className="flex-1 w-full rounded-full text-base font-medium">
+          <form className="w-full" action="/api/checkout_sessions" method="POST">
+            <input
+              type="hidden"
+              name="productId"
+              value={product._id}
+            />
+            <Button type="submit" size="lg" className="flex-1 w-full rounded-full text-base font-medium">
               <ShoppingCart className="mr-2 h-5 w-5" />
               Buy Now
             </Button>
-            </form>
+          </form>
 
           <Button
+            onClick={() => handleAddWishList(product)}
             size="icon"
             variant="outline"
             className="rounded-full"
