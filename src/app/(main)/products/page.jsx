@@ -1,9 +1,11 @@
 import ProductCard from "@/components/shared/ProductCard";
 import { serverFetch } from "@/lib/core/server";
+import { getUserSession } from "@/lib/core/session";
 
 
 export default async function ProductsPage() {
     const products = await serverFetch('/api/products');
+    const user=await getUserSession()
     return (
         <section className="container mx-auto px-4 py-20">
             <div className="mb-10">
@@ -21,6 +23,7 @@ export default async function ProductsPage() {
                     <ProductCard
                         key={product._id}
                         product={product}
+                        user={user}
                     />
                 ))}
             </div>

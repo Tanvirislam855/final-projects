@@ -8,12 +8,18 @@ import { addToWishList } from "@/lib/actions/wishlist";
 import ShowToast from "@/components/shared/ShowToast";
 
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product ,user}) {
   const [toastProps, setToastProps] = useState(null);
 
   const handleAddWishList = async (data) => {
+   
+    
     try {
-      const addInWishList = await addToWishList(data);
+      const insertedData={
+        ...data,
+        userId: user?.id
+      }
+      const addInWishList = await addToWishList(insertedData);
       console.log(addInWishList);
       
 

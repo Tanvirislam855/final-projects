@@ -12,6 +12,8 @@ const Toaster = ({
   return (
     <Sonner
       theme={theme}
+      position="top-right"
+      gap={12}
       className="toaster group"
       icons={{
         success: (

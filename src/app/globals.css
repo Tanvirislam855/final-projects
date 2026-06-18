@@ -150,18 +150,33 @@
     @apply mt-4 text-base md:text-xl text-muted-foreground;
   }
 
-  /* Center Sonner Toaster in the middle of the screen */
+  /* Sonner Toaster — keep gap but do not force a single fixed position
+     Allow Sonner to place toasts (top-center, top-right, etc.) per-toast. */
   .toaster {
-    position: fixed !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
     width: auto !important;
     z-index: 9999 !important;
     pointer-events: none;
+    padding-right: 24px;
   }
 
   .toaster .cn-toast {
     pointer-events: auto;
+    margin-right: 16px;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  }
+
+  @keyframes toast-slide-in {
+    from {
+      opacity: 0;
+      transform: translateX(60px) scale(0.92);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+  }
+
+  [data-sonner-toast] {
+    animation: toast-slide-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both !important;
   }
 }

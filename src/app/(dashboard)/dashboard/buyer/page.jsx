@@ -1,36 +1,17 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { wishList } from "@/lib/api/wishList";
 import { serverFetch } from "@/lib/core/server";
 import { getUserSession } from "@/lib/core/session";
 import { Package, Heart, ShoppingBag } from "lucide-react";
 
-const stats = {
-  totalOrders: 12,
-  wishlistCount: 8,
-};
 
-const recentPurchases = [
-  {
-    id: 1,
-    name: "Sony WH-1000XM5",
-    price: "$280",
-  },
-  {
-    id: 2,
-    name: "Mechanical Keyboard",
-    price: "$75",
-  },
-  {
-    id: 3,
-    name: "Office Chair",
-    price: "$140",
-  },
-];
+
 
 export default async function BuyerDashboardOverview() {
-  const user=await getUserSession();
+  const user = await getUserSession();
   const orders = await serverFetch(`/api/orders?userId=${user.id}`);
-  
-  
+  const wish_List = await wishList();
+
   return (
     <div className="space-y-8">
       {/* Cards */}
@@ -56,7 +37,7 @@ export default async function BuyerDashboardOverview() {
           </CardHeader>
 
           <CardContent>
-            <h2 className="text-4xl font-bold">{stats.wishlistCount}</h2>
+            <h2 className="text-4xl font-bold">{wish_List?.length || 0}</h2>
             <p className="text-sm text-muted-foreground mt-2">
               Saved products
             </p>
