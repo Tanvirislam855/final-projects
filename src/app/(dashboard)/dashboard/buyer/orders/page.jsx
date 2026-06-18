@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getUserSession } from "@/lib/core/session";
 import { serverFetch } from "@/lib/core/server";
+import EmptyOrders from "@/components/dashboard/EmptyOrders";
 
 export default async function MyOrdersPage() {
   const user = await getUserSession();
@@ -18,6 +19,12 @@ export default async function MyOrdersPage() {
   const orders = await serverFetch(
     `/api/orders?userId=${user.id}`
   );
+
+ 
+  if (orders.length === 0) {
+     return <EmptyOrders/>
+  }
+
 
   return (
     <div className="space-y-6">
@@ -76,8 +83,8 @@ export default async function MyOrdersPage() {
                       order.orderStatus === "delivered"
                         ? "default"
                         : order.orderStatus === "processing"
-                        ? "secondary"
-                        : "destructive"
+                          ? "secondary"
+                          : "destructive"
                     }
                   >
                     {order.orderStatus}

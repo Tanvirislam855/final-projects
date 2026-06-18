@@ -18,32 +18,8 @@ import { Badge } from "@/components/ui/badge";
 import { serverFetch } from "@/lib/core/server";
 import { getUserSession } from "@/lib/core/session";
 
-// const payments = [
-//   {
-//     id: "TXN-1001",
-//     amount: "$280",
-//     date: "Jun 17, 2026",
-//     status: "Completed",
-//   },
-//   {
-//     id: "TXN-1002",
-//     amount: "$95",
-//     date: "Jun 15, 2026",
-//     status: "Pending",
-//   },
-//   {
-//     id: "TXN-1003",
-//     amount: "$140",
-//     date: "Jun 10, 2026",
-//     status: "Failed",
-//   },
-//   {
-//     id: "TXN-1004",
-//     amount: "$60",
-//     date: "Jun 07, 2026",
-//     status: "Completed",
-//   },
-// ];
+
+
 
 
 
@@ -54,6 +30,7 @@ export default async function PaymentHistoryPage() {
     `/api/orders?userId=${user.id}`
   );
 
+      
   return (
     <div className="space-y-6">
       <div>
@@ -89,7 +66,7 @@ export default async function PaymentHistoryPage() {
 
                   <TableCell>{payment.price}</TableCell>
 
-                  <TableCell>{payment.createdAt}</TableCell>
+                  <TableCell>{new Date(payment.createdAt).toDateString()}</TableCell>
 
                   <TableCell>
                     <Badge
