@@ -87,7 +87,7 @@ const navItems = {
     },
     {
       name: "Profile",
-      path: "/dashboard/seller/profile",
+      path: "/dashboard/buyer/profile",
       icon: User,
     },
   ],

@@ -6,15 +6,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "picsum.photos", // Domain of the images to allow
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com", // Domain of the images to allow
-        port: "",
-        pathname: "/**",
+        hostname: "**",
       },
     ],
   },

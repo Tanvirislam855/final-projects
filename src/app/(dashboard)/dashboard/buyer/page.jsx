@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { wishList } from "@/lib/api/wishList";
-import { serverFetch } from "@/lib/core/server";
+import { protectedFetch, serverFetch } from "@/lib/core/server";
 import { getUserSession } from "@/lib/core/session";
 import { Package, Heart, ShoppingBag, ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 
 export default async function BuyerDashboardOverview() {
   const user = await getUserSession();
-  const orders = await serverFetch(`/api/orders?userId=${user.id}`);
+  const orders = await protectedFetch(`/api/orders?userId=${user.id}`);
   const wish_List = await wishList();
 
   return (

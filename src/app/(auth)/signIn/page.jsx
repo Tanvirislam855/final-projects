@@ -7,20 +7,26 @@ import { authClient } from "@/lib/auth-client";
 import dynamic from 'next/dynamic';
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 import loginAnimation from "../../../../public/lottie/login.json";
+import { useRouter } from "next/navigation";
+
 
 const SignInPage = () => {
   const [form, setForm] = useState({ email: "", password: "" });
-
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-
+  
+  const router=useRouter()
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = form;
     const data = await authClient.signIn.email({ email, password });
     console.log("Sign In Data:", data);
+    if(data.data.user){
+      router.push('/')
+    }
   };
+  
 
   const handleGoogleSignIn = async() => {
   const data = await authClient.signIn.social({
