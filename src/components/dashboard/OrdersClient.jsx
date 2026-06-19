@@ -21,9 +21,21 @@ import {
   Clock,
   Hash,
   CheckCircle2,
-  Loader2,
+  AlertTriangle,
 } from "lucide-react";
 import { cancelOrder } from "@/lib/actions/deleteOrder";
+import { toast } from "sonner";
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "@/components/ui/alert-dialog";
 
 
 function PaymentBadge({ status }) {
@@ -275,11 +287,18 @@ function OrderDetailModal({ order, onClose }) {
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function OrdersClient({ orders }) {
   const [selectedOrder, setSelectedOrder] = useState(null);
+  const [isCancelling, setIsCancelling] = useState(false);
 
 const handleCancelOrder=async(id)=>{
-  const deleteOrder=await cancelOrder(id)
-  console.log(deleteOrder);
-  
+  try {
+    setIsCancelling(true);
+    await cancelOrder(id);
+    toast.success("Order cancelled successfully");
+  } catch (err) {
+    toast.error(err);
+  } finally {
+    setIsCancelling(false);
+  }
 }
 
   return (
@@ -293,14 +312,19 @@ const handleCancelOrder=async(id)=>{
       )}
 
       <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold">My Orders</h1>
-          <p className="mt-2 text-muted-foreground">
-            Track and manage your orders.
-          </p>
+        <div className="flex items-center gap-3">
+          <div className="p-2.5 rounded-xl" style={{ background: "rgba(62,95,71,0.1)" }}>
+            <ShoppingBag className="w-5 h-5" style={{ color: "#3E5F47" }} />
+          </div>
+          <div>
+            <h1 className="text-2xl font-bold tracking-tight">My Orders</h1>
+            <p className="text-sm text-muted-foreground mt-0.5">
+              Track and manage your orders.
+            </p>
+          </div>
         </div>
 
-        <div className="rounded-xl border overflow-hidden">
+        <div className="rounded-xl border overflow-hidden shadow-sm">
           <Table>
             <TableHeader>
               <TableRow>
@@ -310,7 +334,7 @@ const handleCancelOrder=async(id)=>{
                 <TableHead>Price</TableHead>
                 <TableHead>Payment</TableHead>
                 <TableHead>Status</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+                <TableHead className={'text-center'}>Actions</TableHead>
               </TableRow>
             </TableHeader>
 
@@ -341,7 +365,7 @@ const handleCancelOrder=async(id)=>{
                     <OrderBadge status={order.orderStatus} />
                   </TableCell>
 
-                  <TableCell className="text-right ">
+                  <TableCell className="flex items-center justify-center ">
                    <div className="flex items-center gap-3.5">
                      <Button
                       size="sm"
@@ -355,18 +379,41 @@ const handleCancelOrder=async(id)=>{
                     >
                       View Details
                     </Button>
-                    <Button
-                      size="sm"
-                      variant="destructive"
-                      className="rounded-full text-xs px-4"
-                      
-                      onClick={() => handleCancelOrder(order._id)}
-                    >
-                     
-                        {/* <Loader2 className="w-3.5 h-3.5 animate-spin mr-1" /> */}
-                     
-                     Cancel
-                    </Button>
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button
+                          size="sm"
+                          variant="destructive"
+                          className="rounded-full text-xs px-4"
+                        >
+                         Cancel
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <div className="mx-auto sm:mx-0 p-2.5 rounded-full bg-red-50 w-fit">
+                            <AlertTriangle className="w-5 h-5 text-red-500" />
+                          </div>
+                          <AlertDialogTitle>Cancel Order?</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            Are you sure you want to cancel{" "}
+                            <span className="font-medium text-foreground">
+                              {order.productName}
+                            </span>
+                            ? This action cannot be undone.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Keep Order</AlertDialogCancel>
+                          <AlertDialogAction
+                            disabled={isCancelling}
+                            onClick={() => handleCancelOrder(order._id)}
+                          >
+                            {isCancelling ? "Cancelling..." : "Yes, Cancel"}
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
                    </div>
                   </TableCell>
 

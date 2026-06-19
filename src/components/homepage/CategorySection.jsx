@@ -1,33 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Leaf, ArrowUpRight } from "lucide-react";
-
-const categories = [
-  {
-    title: "Electronics",
-    count: "3,214",
-    image: "https://picsum.photos/500/500?random=1",
-  },
-  {
-    title: "Furniture",
-    count: "1,820",
-    image: "https://picsum.photos/500/500?random=2",
-  },
-  {
-    title: "Vehicles",
-    count: "902",
-    image: "https://picsum.photos/500/500?random=3",
-  },
-  {
-    title: "Fashion",
-    count: "4,406",
-    image: "https://picsum.photos/500/500?random=4",
-  },
-  {
-    title: "Mobile Phones",
-    count: "2,110",
-    image: "https://picsum.photos/500/500?random=5",
-  },
-];
+import categories from "@/lib/data/categories";
 
 export default function CategorySection() {
   return (
@@ -54,7 +28,11 @@ export default function CategorySection() {
         {/* Categories */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
           {categories.map((category) => (
-            <div key={category.title} className="group cursor-pointer">
+            <Link
+              key={category.title}
+              href={`/categories/${category.title}`}
+              className="group block"
+            >
               <div className="relative overflow-hidden rounded-[32px] bg-[#ECEAE5] shadow-sm transition-all duration-300 group-hover:shadow-md">
                 <Image
                   src={category.image}
@@ -63,11 +41,9 @@ export default function CategorySection() {
                   height={500}
                   className="aspect-square w-full object-cover transition duration-700 group-hover:scale-110"
                 />
-                
-                {/* Inner shadow/overlay for premium feel */}
+
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                
-                {/* Arrow icon that slides in on hover */}
+
                 <div className="absolute right-4 top-4 translate-x-4 -translate-y-4 rounded-full bg-white/90 p-2 opacity-0 backdrop-blur-sm shadow-sm transition-all duration-500 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100">
                   <ArrowUpRight className="h-5 w-5 text-[#3E5F47]" />
                 </div>
@@ -79,10 +55,10 @@ export default function CategorySection() {
                 </h3>
 
                 <span className="rounded-full bg-[#ECEAE5] px-3 py-1 text-xs font-medium text-[#3E5F47] transition-colors group-hover:bg-[#3E5F47] group-hover:text-white">
-                  {category.count}
+                  {category.description}
                 </span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

@@ -1,11 +1,22 @@
 "use client";
 
 import Image from "next/image";
-import { ShoppingCart, Trash2, X, MapPin, Clock, Shield } from "lucide-react";
+import { ShoppingCart, Trash2, X, MapPin, Clock, Shield, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useRef, useEffect } from "react";
 import { toast } from "sonner";
 import { deleteItems } from "@/lib/actions/wishlist";
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "@/components/ui/alert-dialog";
 
 // ─── Helper Row ────────────────────────────────────────────────────────────────
 function Row({ label, value, highlight, truncate }) {
@@ -216,15 +227,18 @@ function CheckoutModal({ item, onConfirm, onCancel }) {
 export default function WishlistClient({ wishlist}) {
  
   const [modalItem, setModalItem] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
   const formRef = useRef(null);
 
     const handleRemove = async (id) => {
       try {
-        const res=await deleteItems(id)
-        
-       
+        setIsDeleting(true);
+        await deleteItems(id);
+        toast.success("Item removed from wishlist");
       } catch (err) {
-        toast.error(err)
+        toast.error(err);
+      } finally {
+        setIsDeleting(false);
       }
     };
 
@@ -310,14 +324,41 @@ export default function WishlistClient({ wishlist}) {
                   Checkout
                 </Button>
 
-                <Button
-                  onClick={() => handleRemove(item._id)}
-                  size="icon"
-                  variant="outline"
-                  className="rounded-full"
-                >
-                  <Trash2 className="w-4 h-4 text-red-500" />
-                </Button>
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button
+                      size="icon"
+                      variant="outline"
+                      className="rounded-full"
+                    >
+                      <Trash2 className="w-4 h-4 text-red-500" />
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <div className="mx-auto sm:mx-0 p-2.5 rounded-full bg-red-50 w-fit">
+                        <AlertTriangle className="w-5 h-5 text-red-500" />
+                      </div>
+                      <AlertDialogTitle>Remove from Wishlist?</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        Are you sure you want to remove{" "}
+                        <span className="font-medium text-foreground">
+                          {item.title}
+                        </span>{" "}
+                        from your wishlist? This action cannot be undone.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction
+                        disabled={isDeleting}
+                        onClick={() => handleRemove(item._id)}
+                      >
+                        {isDeleting ? "Removing..." : "Yes, Remove"}
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
               </div>
             </div>
           </div>
