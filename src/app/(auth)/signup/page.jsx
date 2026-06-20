@@ -77,6 +77,9 @@ const SignUpPage = () => {
         image: image || undefined,
         status: 'active' 
       });
+      console.log("session",session,apiError);
+      
+      
 
       if (apiError) {
         setError(apiError.message || "An error occurred during sign up.");

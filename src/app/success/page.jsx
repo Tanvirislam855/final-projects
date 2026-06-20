@@ -64,6 +64,7 @@ export default async function Success({ searchParams }) {
 
     const subInfo = {
       productId,
+      category: product.category,
       paymentStatus: 'paid',
       orderStatus: 'processing',
       transactionId,

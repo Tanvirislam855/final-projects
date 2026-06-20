@@ -3,29 +3,35 @@ import ProductsPagination from "@/components/shared/ProductsPagination";
 import { serverFetch } from "@/lib/core/server";
 import { getUserSession } from "@/lib/core/session";
 import { FadeUp } from "@/components/shared/AnimatedDiv";
+import SearchBar from "@/components/shared/SearchBar";
 
 export default async function ProductsPage({ searchParams }) {
   const params = await searchParams;
-
+  const search = params?.search;
   const currentPage = Number(params.page) || 1;
 
-  const { products, totalPage } = await serverFetch(
-    `/api/products?page=${currentPage}`
-  );
+  const url = search ? `/api/products?search=${search}` : `/api/products?page=${currentPage}`
+
+
+
+  const { products, totalPage } = await serverFetch(url);
 
   const user = await getUserSession();
 
   return (
     <section className="container mx-auto px-4 py-20">
       <FadeUp>
-        <div className="mb-10">
-          <h2 className="text-4xl font-bold">
-            Explore Products
-          </h2>
+        <div className="mb-10 flex items-center flex-col gap-3 md:gap-0 md:flex-row md:justify-between">
+          <div className="text-center md:text-left">
+            <h2 className="text-4xl font-bold">
+              Explore Products
+            </h2>
 
-          <p className="mt-2 text-muted-foreground">
-            Discover quality pre-owned items from trusted sellers.
-          </p>
+            <p className="mt-2 text-muted-foreground">
+              Discover quality pre-owned items from trusted sellers.
+            </p>
+          </div>
+          <SearchBar />
         </div>
       </FadeUp>
 

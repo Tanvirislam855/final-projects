@@ -19,16 +19,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+
 
 import {
   Table,
@@ -43,6 +36,7 @@ import { deleteProduct } from "@/lib/actions/products";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import SearchSellerProduct from "@/components/dashboard/seller/Search";
 
 export default function MyProductsPage({ productData: products }) {
   const [isCancelling, setIsCancelling] = useState(false);
@@ -76,53 +70,7 @@ export default function MyProductsPage({ productData: products }) {
       </div>
 
       {/* Search + Filter */}
-      <Card className="rounded-3xl">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Filter className="h-5 w-5" />
-            Search & Filter
-          </CardTitle>
-        </CardHeader>
-
-        <CardContent>
-          <div className="grid gap-4 md:grid-cols-3">
-            <div className="relative">
-              <Search className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" />
-
-              <Input
-                placeholder="Search products..."
-                className="rounded-xl pl-10"
-              />
-            </div>
-
-            <Select>
-              <SelectTrigger className="rounded-xl">
-                <SelectValue placeholder="Category" />
-              </SelectTrigger>
-
-              <SelectContent>
-                <SelectItem value="all">All Categories</SelectItem>
-                <SelectItem value="electronics">Electronics</SelectItem>
-                <SelectItem value="gaming">Gaming</SelectItem>
-                <SelectItem value="furniture">Furniture</SelectItem>
-                <SelectItem value="sports">Sports</SelectItem>
-              </SelectContent>
-            </Select>
-
-            <Select>
-              <SelectTrigger className="rounded-xl">
-                <SelectValue placeholder="Status" />
-              </SelectTrigger>
-
-              <SelectContent>
-                <SelectItem value="all">All Status</SelectItem>
-                <SelectItem value="available">Available</SelectItem>
-                <SelectItem value="sold">Sold</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        </CardContent>
-      </Card>
+      <SearchSellerProduct/>
 
       {/* Products */}
       <Card className="rounded-3xl">

@@ -108,7 +108,7 @@ const navItems = {
     },
     {
       name: "Profile",
-      path: "/dashboard/admin/profile",
+      path: "/dashboard/buyer/profile",
       icon: "User",
     },
   ],
@@ -123,7 +123,7 @@ export async function DashboardSidebar() {
   const user = await getUserSession()
   
   const items = navItems[user?.role]
-  console.log(items);
+  
   
   return (
     <Sidebar>

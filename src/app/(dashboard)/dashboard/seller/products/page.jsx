@@ -3,9 +3,12 @@ import { getUserSession } from '@/lib/core/session';
 import React from 'react';
 import MyProductsPage from './MyProductsPage';
 
-const ProductDashboard = async () => {
+const ProductDashboard = async ({searchParams}) => {
+    const params=await searchParams
+    console.log(params);
+    
     const user = await getUserSession();
-    const productData = await protectedFetch(`/api/seller-product?id=${user.id}`)
+    const productData = await protectedFetch(`/api/seller-product?id=${user.id}&search=${params.search || ""}&category=${params.category || ""}&status=${params.status || ""}`)
     
     
     return (
