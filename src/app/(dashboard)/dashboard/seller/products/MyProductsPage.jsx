@@ -9,6 +9,7 @@ import {
   Package,
   Filter,
   Plus,
+  AlertTriangle,
 } from "lucide-react";
 
 import {
@@ -38,9 +39,23 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import EditProductDialog from "@/components/dashboard/seller/EditProductDialog";
+import { deleteProduct } from "@/lib/actions/products";
+import toast from "react-hot-toast";
+import Link from "next/link";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 
-export default function MyProductsPage({ productData:products }) {
-  
+export default function MyProductsPage({ productData: products }) {
+  const [isCancelling, setIsCancelling] = useState(false);
+  const handleRemoveProduct = async (id) => {
+    const res = await deleteProduct(id);
+    if (res.deletedCount > 0) {
+      toast.success('Product delete successfully !')
+    }
+    else {
+      toast.error('something wrong !')
+    }
+
+  }
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -51,11 +66,13 @@ export default function MyProductsPage({ productData:products }) {
             Manage all products created by you.
           </p>
         </div>
+        <Link href={'/dashboard/seller/add-product'}>
+          <Button className="rounded-xl">
+            <Plus className="mr-2 h-4 w-4" />
+            Add Product
+          </Button>
+        </Link>
 
-        <Button className="rounded-xl">
-          <Plus className="mr-2 h-4 w-4" />
-          Add Product
-        </Button>
       </div>
 
       {/* Search + Filter */}
@@ -186,13 +203,41 @@ export default function MyProductsPage({ productData:products }) {
                     <div className="flex justify-end gap-2">
                       <EditProductDialog product={product} />
 
-                      <Button
-                        size="icon"
-                        variant="destructive"
-                        className="rounded-xl"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </Button>
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button
+                            size="sm"
+                            variant="destructive"
+                            className="rounded-full text-xs px-4"
+                          >
+                            Cancel
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <div className="mx-auto sm:mx-0 p-2.5 rounded-full bg-red-50 w-fit">
+                              <AlertTriangle className="w-5 h-5 text-red-500" />
+                            </div>
+                            <AlertDialogTitle>Cancel Order?</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              Are you sure you want to cancel{" "}
+                              <span className="font-medium text-foreground">
+                                {product.productName}
+                              </span>
+                              ? This action cannot be undone.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Keep Order</AlertDialogCancel>
+                            <AlertDialogAction
+                              disabled={isCancelling}
+                              onClick={() => handleRemoveProduct(product._id)}
+                            >
+                              {isCancelling ? "Cancelling..." : "Yes, Cancel"}
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
                     </div>
                   </TableCell>
                 </TableRow>

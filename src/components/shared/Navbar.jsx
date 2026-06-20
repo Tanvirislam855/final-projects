@@ -149,9 +149,7 @@ export default async function Navbar() {
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="text-red-600 cursor-pointer">
                   <SignOut/>
-                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
             </div>

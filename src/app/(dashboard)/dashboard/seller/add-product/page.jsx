@@ -18,6 +18,8 @@ import Image from "next/image";
 import { authClient } from "@/lib/auth-client";
 import { Loader } from "@/components/ui/loader";
 import { addProducts } from "@/lib/actions/products";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 // Categories mapping
 const CATEGORIES = [
@@ -32,11 +34,12 @@ const CATEGORIES = [
 
 const CONDITIONS = ["Good", "Like New"];
 
-// ImgBB API Configuration
-const IMGBB_API_KEY = `${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`
 
 
-const IMGBB_UPLOAD_URL = `https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`;
+const IMGBB_UPLOAD_URL = `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`;
+
+
+
 
 const initialForm = {
   title: "",
@@ -49,7 +52,7 @@ const initialForm = {
 export default function AddProductForm() {
   const { data: session, isPending } = authClient.useSession()
 
-
+  const router=useRouter()
 
 
   const [form, setForm] = useState(initialForm);
@@ -92,33 +95,39 @@ export default function AddProductForm() {
     setUploadedImageUrl(null);
   };
 
-  const uploadToImgBB = async () => {
-    if (!imageFile) return null;
 
-    setIsUploading(true);
-    try {
-      const formData = new FormData();
-      formData.append("image", imageFile);
 
-      const res = await fetch(IMGBB_UPLOAD_URL, {
-        method: "POST",
-        body: formData,
-      });
+const uploadToCloudinary = async (file) => {
+  if (!file) return null;
 
-      if (!res.ok) throw new Error("ImgBB upload failed");
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append(
+    "upload_preset",
+    process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
+  );
 
-      const data = await res.json();
-      const url = data?.data?.url;
-      setUploadedImageUrl(url);
-      return url;
-    } catch (err) {
-      console.error("Image upload error:", err);
-      setErrors((prev) => ({ ...prev, image: "Image upload failed. Please try again." }));
-      return null;
-    } finally {
-      setIsUploading(false);
+  const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+
+  const res = await fetch(
+    `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+    {
+      method: "POST",
+      body: formData,
     }
-  };
+  );
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    console.log("Cloudinary error:", data);
+    throw new Error("Upload failed");
+  }
+
+  return data.secure_url;
+};
+
+
 
   const validate = () => {
     const newErrors = {};
@@ -138,14 +147,16 @@ export default function AddProductForm() {
 
     setIsSaving(true);
 
-    let imageUrl = uploadedImageUrl;
-    if (imageFile && !imageUrl) {
-      imageUrl = await uploadToImgBB();
-      if (!imageUrl) {
-        setIsSaving(false);
-        return;
-      }
-    }
+
+    let imageUrl = null;
+
+if (imageFile) {
+  imageUrl = await uploadToCloudinary(imageFile);
+  if (!imageUrl) {
+    setIsSaving(false);
+    return;
+  }
+}
 
     // Exact target payload matching structure
     const productData = {
@@ -165,7 +176,10 @@ export default function AddProductForm() {
     };
 
     const res=await addProducts(productData)
-    console.log(res);
+    if(res.insertedId){
+      toast.success("Product added successfully !")
+      router.push('/dashboard/seller/products')
+    }
     
 
     setIsSaving(false);

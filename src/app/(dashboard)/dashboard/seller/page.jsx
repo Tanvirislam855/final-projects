@@ -20,7 +20,7 @@ export default async function SellerDashboardOverview() {
   const user=await getUserSession();
   const data=await protectedFetch(`/api/seller?id=${user.id}`);
   const {
-  pendingOrders,
+  processingOrders,
   totalProducts,
   totalRevenue,
   totalSales
@@ -53,7 +53,7 @@ const stats = [
   },
   {
     title: "Pending Orders",
-    value: pendingOrders,
+    value: processingOrders,
     icon: Clock3,
     color: "text-orange-600",
     bg: "bg-orange-50",

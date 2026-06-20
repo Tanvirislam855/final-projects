@@ -12,7 +12,14 @@ export const addProducts=async(data)=>{
 // update seller product
 export const updateProduct=async(id,data)=>{
    
-    const res=serverMutation(`/api/seller-edit?id=${id}`,data,'PATCH');
+    const res=await serverMutation(`/api/seller-edit?id=${id}`,data,'PATCH');
+    revalidatePath('/dashboard/seller/products')
+    return res;
+}
+
+// delete products
+export const deleteProduct=async(id)=>{
+    const res=await serverMutation(`/api/seller-delete?id=${id}`,null,'DELETE');
     revalidatePath('/dashboard/seller/products')
     return res;
 }

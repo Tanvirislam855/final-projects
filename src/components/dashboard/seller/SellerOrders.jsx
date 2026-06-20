@@ -27,19 +27,25 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { updateOrderStatus } from "@/lib/actions/orders";
+import toast from "react-hot-toast";
 
-export default function SellerOrders({ orders }) {
+export default function SellerOrders({ orders, res }) {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [open, setOpen] = useState(false);
-
+  const { deliveredOrders, pendingOrders, processingOrders, totalOrders, totalProducts, totalRevenue, totalSales } = res;
   const handleView = (order) => {
     setSelectedOrder(order);
     setOpen(true);
   };
 
-  const handleStatusUpdate = (id, newStatus) => {
+  const handleStatusUpdate = async (id, newStatus) => {
     console.log(id, newStatus);
-    // backend later
+    const res = await updateOrderStatus(id, newStatus)
+    if(res.modifiedCount > 0){
+      toast(`order status update to ${newStatus}`)
+    }
+    
   };
 
   return (
@@ -66,7 +72,7 @@ export default function SellerOrders({ orders }) {
 
           <CardContent>
             <h2 className="text-3xl font-bold">
-              {orders.length}
+              {totalOrders}
             </h2>
           </CardContent>
         </Card>
@@ -78,7 +84,7 @@ export default function SellerOrders({ orders }) {
 
           <CardContent>
             <h2 className="text-3xl font-bold">
-              {orders.filter(o => o.status === "Pending").length}
+              {processingOrders ? processingOrders : "0"}
             </h2>
           </CardContent>
         </Card>
@@ -90,7 +96,7 @@ export default function SellerOrders({ orders }) {
 
           <CardContent>
             <h2 className="text-3xl font-bold">
-              {orders.filter(o => o.status === "Processing").length}
+              {pendingOrders ? pendingOrders : "0"}
             </h2>
           </CardContent>
         </Card>
@@ -102,7 +108,7 @@ export default function SellerOrders({ orders }) {
 
           <CardContent>
             <h2 className="text-3xl font-bold">
-              {orders.filter(o => o.status === "Delivered").length}
+              {deliveredOrders ? deliveredOrders : "0"}
             </h2>
           </CardContent>
         </Card>
@@ -130,17 +136,12 @@ export default function SellerOrders({ orders }) {
             </TableHeader>
 
             <TableBody>
-
               {orders.map((order) => (
-
                 <TableRow key={order._id}>
+                  <TableCell>{order.productName}</TableCell>
 
                   <TableCell>
-                    {order.productName}
-                  </TableCell>
-
-                  <TableCell>
-                    {order.buyer}
+                    {order.buyerInfo.userName}
                   </TableCell>
 
                   <TableCell>
@@ -149,49 +150,46 @@ export default function SellerOrders({ orders }) {
 
                   <TableCell>
                     <Badge>
-                      {order.status}
+                      {order.orderStatus}
                     </Badge>
                   </TableCell>
 
                   <TableCell className="space-x-2">
-
                     <Button
                       size="sm"
                       variant="outline"
-                      className="rounded-full border-[#3E5F47]/30 bg-[#ECEAE5] text-[#3E5F47] hover:bg-[#dfddd8] hover:text-[#304B38] transition-all duration-200"
+                      className="rounded-full border-[#3E5F47]/30 bg-[#ECEAE5] text-[#3E5F47]"
                       onClick={() => handleView(order)}
                     >
                       View
                     </Button>
 
-                    {order.status === "Pending" && (
+                    {order.orderStatus === "processing" && (
                       <>
                         <Button
                           size="sm"
-                          className="rounded-full bg-[#3E5F47] hover:bg-[#304B38] text-white transition-all duration-200"
+                          className="rounded-full bg-[#3E5F47] hover:bg-[#304B38]"
                           onClick={() =>
-                            handleStatusUpdate(order._id, "Accepted")
+                            handleStatusUpdate(order._id, "delivered")
                           }
                         >
-                          Accept
+                          Delivered
                         </Button>
 
                         <Button
                           size="sm"
                           variant="destructive"
-                          className="rounded-full"
+                          onClick={() =>
+                            handleStatusUpdate(order._id, "cancelled")
+                          }
                         >
-                          Reject
+                          Cancel
                         </Button>
                       </>
                     )}
-
                   </TableCell>
-
                 </TableRow>
-
               ))}
-
             </TableBody>
 
           </Table>
@@ -219,12 +217,12 @@ export default function SellerOrders({ orders }) {
 
               <div>
                 <p className="font-semibold">Buyer Name</p>
-                <p>{selectedOrder.buyer}</p>
+                <p>{selectedOrder.buyerInfo.userName}</p>
               </div>
 
               <div>
                 <p className="font-semibold">Buyer Email</p>
-                <p>{selectedOrder.email}</p>
+                <p>{selectedOrder.buyerInfo.customerEmail}</p>
               </div>
 
               <div>
@@ -233,13 +231,25 @@ export default function SellerOrders({ orders }) {
               </div>
 
               <div>
-                <p className="font-semibold">Status</p>
-                <Badge>{selectedOrder.status}</Badge>
+                <p className="font-semibold">Payment Status</p>
+                <Badge>{selectedOrder.paymentStatus}</Badge>
+              </div>
+
+              <div>
+                <p className="font-semibold">Order Status</p>
+                <Badge>{selectedOrder.orderStatus}</Badge>
+              </div>
+
+              <div>
+                <p className="font-semibold">Transaction ID</p>
+                <p>{selectedOrder.transactionId}</p>
               </div>
 
               <div>
                 <p className="font-semibold">Date</p>
-                <p>{selectedOrder.date}</p>
+                <p>
+                  {new Date(selectedOrder.createdAt).toLocaleString()}
+                </p>
               </div>
 
             </div>
