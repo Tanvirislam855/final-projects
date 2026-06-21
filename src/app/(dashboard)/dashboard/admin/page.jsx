@@ -1,13 +1,15 @@
 import { getUserSession } from '@/lib/core/session';
 import React from 'react';
+import AdminOverview from '@/components/dashboard/admin/AdminOverview';
+import { protectedFetch } from '@/lib/core/server';
 
-const AdminPage = async() => {
-    const user=await getUserSession()
-    console.log(user);
-    
+const AdminPage = async () => {
+    const user = await getUserSession();
+      const dashboardData=await protectedFetch('/admin-dashboard');
+
     return (
         <div>
-            Admin page
+            <AdminOverview dashboardData={dashboardData}/>
         </div>
     );
 };
