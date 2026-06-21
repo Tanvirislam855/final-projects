@@ -8,10 +8,8 @@ import {
   Trash2,
   AlertTriangle,
   Eye,
-  ExternalLink,
-  Filter,
 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -33,139 +31,68 @@ import {
 } from "@/components/ui/dialog";
 import { FadeUp } from "@/components/shared/AnimatedDiv";
 import { toast } from "react-hot-toast";
+import Image from "next/image";
+import DashboardPagination from "@/components/shared/DashboardPagination";
 
-// Initial Mock Products
-const INITIAL_PRODUCTS = [
-  {
-    id: "p1",
-    name: "Handmade Ceramic Mug",
-    seller: "CeramicStudio",
-    category: "Home & Living",
-    price: 450,
-    status: "pending",
-    reports: 0,
-    imageUrl: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=80&q=80",
-  },
-  {
-    id: "p2",
-    name: "Organic Cotton T-Shirt",
-    seller: "EcoGrow",
-    category: "Clothing",
-    price: 850,
-    status: "reported",
-    reports: 3,
-    reportReason: "Inappropriate description & misleading materials list",
-    imageUrl: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=80&q=80",
-  },
-  {
-    id: "p3",
-    name: "Minimalist Leather Wallet",
-    seller: "HideAndSeek",
-    category: "Accessories",
-    price: 1200,
-    status: "approved",
-    reports: 0,
-    imageUrl: "https://images.unsplash.com/photo-1627124765135-562a0487000d?w=80&q=80",
-  },
-  {
-    id: "p4",
-    name: "Wireless Mechanical Keyboard",
-    seller: "KeyTechs",
-    category: "Electronics",
-    price: 4800,
-    status: "approved",
-    reports: 0,
-    imageUrl: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=80&q=80",
-  },
-  {
-    id: "p5",
-    name: "Scented Soy Wax Candle",
-    seller: "EcoGrow",
-    category: "Home & Living",
-    price: 380,
-    status: "pending",
-    reports: 0,
-    imageUrl: "https://images.unsplash.com/photo-1603006905003-be475563bc59?w=80&q=80",
-  },
-  {
-    id: "p6",
-    name: "Designer Fake Watches",
-    seller: "SuperTime",
-    category: "Accessories",
-    price: 9500,
-    status: "reported",
-    reports: 8,
-    reportReason: "Counterfeit trademark infringement",
-    imageUrl: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=80&q=80",
-  },
-  {
-    id: "p7",
-    name: "Premium Bamboo Toothbrush Pack",
-    seller: "GreenLife",
-    category: "Personal Care",
-    price: 250,
-    status: "rejected",
-    reports: 0,
-    imageUrl: "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=80&q=80",
-  },
-];
-
-export default function ManageProducts() {
-  const [products, setProducts] = useState(INITIAL_PRODUCTS);
+export default function ManageProducts({ products: productsData }) {
+  const [products, setProducts] = useState(productsData || []);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
 
   // Dialog and details viewing states
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [detailsOpen, setDetailsOpen] = useState(false);
-  
+
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [productToDelete, setProductToDelete] = useState(null);
 
   // Filters logic
   const filteredProducts = products.filter((prod) => {
     const matchesSearch =
-      prod.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      prod.seller.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      prod.category.toLowerCase().includes(searchTerm.toLowerCase());
+      prod.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      prod.sellerInfo?.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      prod.category?.toLowerCase().includes(searchTerm.toLowerCase());
 
-    const matchesStatus =
-      statusFilter === "all" ||
-      prod.status === statusFilter ||
-      (statusFilter === "reported" && prod.status === "reported");
+    const matchesStatus = statusFilter === "all" || prod.status === statusFilter;
 
     return matchesSearch && matchesStatus;
   });
 
   // Action: Approve Product
   const handleApprove = (id) => {
+    console.log("approve product payload:", { productId: id });
+    // TODO: await fetch(`/api/products/${id}/status`, { method: "PATCH", body: JSON.stringify({ status: "available" }) })
+
     setProducts((prev) =>
       prev.map((p) => {
-        if (p.id === id) {
-          toast.success(`Product "${p.name}" has been approved and listed!`);
-          return { ...p, status: "approved", reports: 0 };
+        if (p._id === id) {
+          toast.success(`Product "${p.title}" has been approved and listed!`);
+          return { ...p, status: "available", reports: 0 };
         }
         return p;
       })
     );
-    if (selectedProduct?.id === id) {
-      setSelectedProduct(prev => ({ ...prev, status: "approved" }));
+    if (selectedProduct?._id === id) {
+      setSelectedProduct((prev) => ({ ...prev, status: "available" }));
     }
   };
 
   // Action: Reject Product
   const handleReject = (id) => {
+    console.log("reject product payload:", { productId: id });
+    // TODO: await fetch(`/api/products/${id}/status`, { method: "PATCH", body: JSON.stringify({ status: "rejected" }) })
+
     setProducts((prev) =>
       prev.map((p) => {
-        if (p.id === id) {
-          toast.error(`Product "${p.name}" has been rejected/unlisted.`);
+        if (p._id === id) {
+          toast.error(`Product "${p.title}" has been rejected/unlisted.`);
           return { ...p, status: "rejected" };
         }
         return p;
       })
     );
-    if (selectedProduct?.id === id) {
-      setSelectedProduct(prev => ({ ...prev, status: "rejected" }));
+    if (selectedProduct?._id === id) {
+      setSelectedProduct((prev) => ({ ...prev, status: "rejected" }));
     }
   };
 
@@ -178,11 +105,15 @@ export default function ManageProducts() {
   // Action: Execute Deletion
   const handleDelete = () => {
     if (!productToDelete) return;
-    setProducts((prev) => prev.filter((p) => p.id !== productToDelete.id));
-    toast.success(`Product "${productToDelete.name}" has been permanently deleted.`);
+
+    console.log("delete product payload:", { productId: productToDelete._id });
+    // TODO: await fetch(`/api/products/${productToDelete._id}`, { method: "DELETE" })
+
+    setProducts((prev) => prev.filter((p) => p._id !== productToDelete._id));
+    toast.success(`Product "${productToDelete.title}" has been permanently deleted.`);
     setDeleteOpen(false);
     setProductToDelete(null);
-    if (selectedProduct?.id === productToDelete.id) {
+    if (selectedProduct?._id === productToDelete._id) {
       setDetailsOpen(false);
     }
   };
@@ -226,8 +157,9 @@ export default function ManageProducts() {
                 className="rounded-full border px-3 py-1.5 text-sm bg-background w-full sm:w-auto"
               >
                 <option value="all">All listings</option>
+                <option value="available">Available</option>
+                <option value="sold">Sold</option>
                 <option value="pending">Pending Approval</option>
-                <option value="approved">Approved</option>
                 <option value="rejected">Rejected</option>
                 <option value="reported">Reported</option>
               </select>
@@ -253,35 +185,46 @@ export default function ManageProducts() {
             <TableBody>
               {filteredProducts.length > 0 ? (
                 filteredProducts.map((prod) => (
-                  <TableRow key={prod.id} className="hover:bg-muted/10">
+                  <TableRow key={prod._id} className="hover:bg-muted/10">
                     <TableCell>
                       <div className="flex items-center gap-3.5">
-                        <img
-                          src={prod.imageUrl}
-                          alt={prod.name}
+                        <Image
+                          width={50}
+                          height={50}
+                          src={prod.images?.[0]}
+                          alt={prod.title}
                           className="h-11 w-11 rounded-lg object-cover border"
                         />
                         <div>
                           <div className="font-semibold text-sm flex items-center gap-1.5">
-                            {prod.name}
+                            {prod.title}
                             {prod.status === "reported" && (
                               <Badge variant="outline" className="border-red-200 bg-red-50 text-red-700 gap-1 text-[10px] px-1.5 py-0">
                                 <AlertTriangle className="h-3 w-3" />
-                                {prod.reports} reports
+                                {prod.reports ?? 0} reports
                               </Badge>
                             )}
                           </div>
-                          <div className="text-xs text-muted-foreground">ID: #{prod.id}</div>
+                          <div className="text-xs text-muted-foreground">
+                            ID: #{prod._id?.slice(-6)} · {prod.condition}
+                          </div>
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell className="text-sm font-medium align-middle">{prod.seller}</TableCell>
+                    <TableCell className="text-sm font-medium align-middle">
+                      {prod.sellerInfo?.name}
+                    </TableCell>
                     <TableCell className="text-sm text-muted-foreground align-middle">{prod.category}</TableCell>
                     <TableCell className="text-sm font-semibold align-middle">৳{prod.price}</TableCell>
                     <TableCell className="align-middle">
-                      {prod.status === "approved" && (
+                      {prod.status === "available" && (
                         <Badge className="bg-emerald-100 text-emerald-800 hover:bg-emerald-200 border-none dark:bg-emerald-900/40 dark:text-emerald-300">
-                          Approved
+                          Available
+                        </Badge>
+                      )}
+                      {prod.status === "sold" && (
+                        <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-200 border-none dark:bg-blue-900/40 dark:text-blue-300">
+                          Sold
                         </Badge>
                       )}
                       {prod.status === "pending" && (
@@ -312,13 +255,13 @@ export default function ManageProducts() {
                           <Eye className="h-4.5 w-4.5 text-muted-foreground" />
                         </Button>
 
-                        {prod.status !== "approved" && (
+                        {prod.status !== "available" && (
                           <Button
                             variant="ghost"
                             size="icon"
                             className="rounded-full hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-950/20"
                             title="Approve Listing"
-                            onClick={() => handleApprove(prod.id)}
+                            onClick={() => handleApprove(prod._id)}
                           >
                             <Check className="h-4.5 w-4.5 text-emerald-600" />
                           </Button>
@@ -330,7 +273,7 @@ export default function ManageProducts() {
                             size="icon"
                             className="rounded-full hover:bg-orange-50 hover:text-orange-600 dark:hover:bg-orange-950/20"
                             title="Reject/Unlist"
-                            onClick={() => handleReject(prod.id)}
+                            onClick={() => handleReject(prod._id)}
                           >
                             <X className="h-4.5 w-4.5 text-orange-600" />
                           </Button>
@@ -371,28 +314,38 @@ export default function ManageProducts() {
             <div className="space-y-4 pt-2">
               <div className="flex gap-4">
                 <img
-                  src={selectedProduct.imageUrl}
-                  alt={selectedProduct.name}
+                  src={selectedProduct.images?.[0]}
+                  alt={selectedProduct.title}
                   className="h-28 w-28 rounded-lg object-cover border"
                 />
                 <div className="space-y-1.5">
-                  <h3 className="font-semibold text-base">{selectedProduct.name}</h3>
-                  <p className="text-xs text-muted-foreground">ID: #{selectedProduct.id}</p>
+                  <h3 className="font-semibold text-base">{selectedProduct.title}</h3>
+                  <p className="text-xs text-muted-foreground">
+                    ID: #{selectedProduct._id?.slice(-6)}
+                  </p>
                   <p className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">
                     Price: ৳{selectedProduct.price}
                   </p>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 flex-wrap">
                     <Badge variant="outline">{selectedProduct.category}</Badge>
-                    <Badge variant="secondary">Seller: {selectedProduct.seller}</Badge>
+                    <Badge variant="outline">{selectedProduct.condition}</Badge>
+                    <Badge variant="secondary">Seller: {selectedProduct.sellerInfo?.name}</Badge>
                   </div>
+                  <p className="text-xs text-muted-foreground pt-1">
+                    {selectedProduct.sellerInfo?.email} · {selectedProduct.sellerInfo?.phone}
+                  </p>
                 </div>
               </div>
+
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {selectedProduct.description}
+              </p>
 
               {selectedProduct.status === "reported" && (
                 <div className="rounded-xl border border-red-200 bg-red-50/50 p-3.5 dark:bg-red-950/20">
                   <div className="flex items-center gap-2 text-red-800 dark:text-red-400 font-semibold text-sm">
                     <AlertTriangle className="h-4.5 w-4.5" />
-                    <span>Report Details ({selectedProduct.reports} user reports)</span>
+                    <span>Report Details ({selectedProduct.reports ?? 0} user reports)</span>
                   </div>
                   <p className="text-xs text-red-700 dark:text-red-300 mt-1.5 leading-relaxed">
                     {selectedProduct.reportReason}
@@ -406,11 +359,11 @@ export default function ManageProducts() {
                   <span className="font-semibold uppercase text-foreground">{selectedProduct.status}</span>
                 </div>
                 <div className="flex gap-2">
-                  {selectedProduct.status !== "approved" && (
+                  {selectedProduct.status !== "available" && (
                     <Button
                       size="sm"
                       className="rounded-full bg-emerald-600 hover:bg-emerald-700 text-white gap-1"
-                      onClick={() => handleApprove(selectedProduct.id)}
+                      onClick={() => handleApprove(selectedProduct._id)}
                     >
                       <Check className="h-3.5 w-3.5" />
                       Approve
@@ -421,7 +374,7 @@ export default function ManageProducts() {
                       size="sm"
                       variant="outline"
                       className="rounded-full text-orange-600 border-orange-200 hover:bg-orange-50 dark:hover:bg-orange-950/20 gap-1"
-                      onClick={() => handleReject(selectedProduct.id)}
+                      onClick={() => handleReject(selectedProduct._id)}
                     >
                       <X className="h-3.5 w-3.5" />
                       Reject
@@ -450,7 +403,7 @@ export default function ManageProducts() {
             <DialogTitle className="text-red-600">Delete Product Listing</DialogTitle>
             <DialogDescription className="pt-2">
               Are you sure you want to permanently delete the product{" "}
-              <strong className="text-foreground">{productToDelete?.name}</strong>? This listing will
+              <strong className="text-foreground">{productToDelete?.title}</strong>? This listing will
               be completely removed from all marketplace catalogs and search indexes.
             </DialogDescription>
           </DialogHeader>
@@ -464,6 +417,10 @@ export default function ManageProducts() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+         
+
+
     </div>
   );
 }

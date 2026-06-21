@@ -11,6 +11,8 @@ import {
   ShoppingBag,
   MoreVertical,
   Plus,
+  AlertTriangle,
+  X,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -40,17 +42,18 @@ import {
 } from "@/components/ui/dialog";
 import { FadeUp } from "@/components/shared/AnimatedDiv";
 import { toast } from "react-hot-toast";
+import { deleteUser, updateRole, userStatusUpdate } from "@/lib/actions/users";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 
-export default function ManageUsers({ users: userData }) {
-  const [users, setUsers] = useState(userData);
+export default function ManageUsers({ users }) {
+  // const [users, setUsers] = useState(userData);
   const [searchTerm, setSearchTerm] = useState("");
   const [roleFilter, setRoleFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
 
-  // Deletion state
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [userToDelete, setUserToDelete] = useState(null);
+
 
   // Search and filter logic
   const filteredUsers = users.filter((user) => {
@@ -65,48 +68,53 @@ export default function ManageUsers({ users: userData }) {
   });
 
   // Action: Toggle Block/Unblock Status
-  const handleToggleBlock = (id) => {
-    setUsers((prevUsers) =>
-      prevUsers.map((user) => {
-        if (user.id === id) {
-          const newStatus = user.status === "active" ? "blocked" : "active";
-          toast.success(
-            `User "${user.name}" has been ${newStatus === "active" ? "unblocked" : "blocked"
-            } successfully.`
-          );
-          return { ...user, status: newStatus };
-        }
-        return user;
-      })
-    );
+  const handleToggleBlock = async (id, userStatus) => {
+
+    try {
+      const data = { id, userStatus };
+      const res = await userStatusUpdate(data);
+      console.log(res);
+      if (res.modifiedCount > 0) {
+
+        toast.success("User status updated");
+      }
+      else {
+        toast.error(res?.message || "Failed to update user");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error(err?.message || "Server error");
+    }
   };
 
   // Action: Change User Role
-  const handleChangeRole = (id, newRole) => {
-    setUsers((prevUsers) =>
-      prevUsers.map((user) => {
-        if (user.id === id) {
-          toast.success(`Role for "${user.name}" changed to ${newRole.toUpperCase()}.`);
-          return { ...user, role: newRole };
-        }
-        return user;
-      })
-    );
-  };
+  const handleChangeRole = async (id, newRole) => {
+    console.log(id, newRole);
+    try {
+      const data = { id, newRole };
+      const res = await updateRole(data);
+      console.log(res);
+      if (res.modifiedCount > 0) {
 
-  // Action: Confirm Delete Click
-  const confirmDelete = (user) => {
-    setUserToDelete(user);
-    setDeleteDialogOpen(true);
+        toast.success("User role updated");
+      }
+      else {
+        toast.error(res?.message || "Failed to update user role");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error(err?.message || "Server error");
+    }
+
   };
 
   // Action: Execute Deletion
-  const handleDeleteUser = () => {
-    if (!userToDelete) return;
-    setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userToDelete.id));
-    toast.success(`Account for "${userToDelete.name}" has been permanently deleted.`);
-    setDeleteDialogOpen(false);
-    setUserToDelete(null);
+  const handleDeleteUser = async (id) => {
+    const res = await deleteUser(id);
+    if (res.deletedCount > 0) {
+      toast.success("user delete successfully")
+    }
+
   };
 
   return (
@@ -187,9 +195,14 @@ export default function ManageUsers({ users: userData }) {
                   <TableRow key={user._id} className="hover:bg-muted/10">
                     <TableCell>
                       <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 rounded-full bg-muted flex items-center justify-center font-bold text-foreground/80 border">
-                          {user.name.split(" ").map(n => n[0]).join("")}
-                        </div>
+                        <Avatar>
+                          <AvatarImage
+                            src={user?.image}
+                            alt={user?.name}
+                           
+                          />
+                          <AvatarFallback>{user.name[0]}</AvatarFallback>
+                        </Avatar>
                         <div>
                           <div className="font-semibold text-sm">{user.name}</div>
                           <div className="text-xs text-muted-foreground">{user.email}</div>
@@ -240,31 +253,64 @@ export default function ManageUsers({ users: userData }) {
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                          <DropdownMenuItem onClick={() => handleToggleBlock(user.id)} className="cursor-pointer">
+                          <DropdownMenuItem className="cursor-pointer">
                             {user.status === "active" ? (
                               <>
                                 <UserX className="mr-2 h-4 w-4 text-red-600" />
-                                <span className="text-red-600 font-medium">Block User</span>
+                                <div onClick={() => handleToggleBlock(user._id, user.status === "active" ? "block" : "active")} className="text-red-600 font-medium">Block User</div>
                               </>
                             ) : (
                               <>
                                 <UserCheck className="mr-2 h-4 w-4 text-emerald-600" />
-                                <span className="text-emerald-600 font-medium">Unblock User</span>
+                                <div onClick={() => handleToggleBlock(user._id, user.status === "active" ? "block" : "active")} className="text-emerald-600 font-medium">Unblock User</div>
                               </>
                             )}
                           </DropdownMenuItem>
 
                           <DropdownMenuItem
-                            onClick={() => handleChangeRole(user.id, user.role === "buyer" ? "seller" : "buyer")}
+                            onClick={() => handleChangeRole(user._id, user.role === "buyer" ? "seller" : "buyer")}
                             className="cursor-pointer"
                           >
                             <Shield className="mr-2 h-4 w-4" />
-                            Toggle Buyer/Seller
+                            Buyer/Seller
                           </DropdownMenuItem>
 
-                          <DropdownMenuItem onClick={() => confirmDelete(user)} className="cursor-pointer text-red-600 dark:text-red-400">
-                            <Trash2 className="mr-2 h-4 w-4" />
-                            Delete Account
+                          <DropdownMenuItem onSelect={(e) => e.preventDefault()} onClick={(e) => e.stopPropagation()} className="cursor-pointer text-red-600 dark:text-red-400">
+
+                            <AlertDialog>
+                              <AlertDialogTrigger asChild>
+                                <div
+                                  size="sm"
+                                  variant="destructive"
+                                  className="rounded-full flex items-center gap-2"
+                                ><X />
+                                  Delete user
+                                </div>
+                              </AlertDialogTrigger>
+                              <AlertDialogContent>
+                                <AlertDialogHeader>
+                                  <div className="mx-auto sm:mx-0 p-2.5 rounded-full bg-red-50 w-fit">
+                                    <AlertTriangle className="w-5 h-5 text-red-500" />
+                                  </div>
+                                  <AlertDialogTitle>Cancel Order?</AlertDialogTitle>
+                                  <AlertDialogDescription>
+                                    Are you sure you want to cancel{" "}
+                                    <span className="font-medium text-foreground">
+                                      {user.name}
+                                    </span>
+                                    ? This action cannot be undone.
+                                  </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                  <AlertDialogCancel>Keep Order</AlertDialogCancel>
+                                  <AlertDialogAction
+                                    onClick={() => handleDeleteUser(user._id)}
+                                  >
+                                    Delete Account
+                                  </AlertDialogAction>
+                                </AlertDialogFooter>
+                              </AlertDialogContent>
+                            </AlertDialog>
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
@@ -283,27 +329,7 @@ export default function ManageUsers({ users: userData }) {
         </Card>
       </FadeUp>
 
-      {/* Delete User Confirmation Dialog */}
-      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle className="text-red-600">Delete User Account</DialogTitle>
-            <DialogDescription className="pt-2">
-              Are you sure you want to permanently delete the account for{" "}
-              <strong className="text-foreground">{userToDelete?.name}</strong> ({userToDelete?.email})?
-              This action cannot be undone and will remove all their system history.
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter className="gap-2 mt-4">
-            <Button variant="outline" className="rounded-full" onClick={() => setDeleteDialogOpen(false)}>
-              Cancel
-            </Button>
-            <Button variant="destructive" className="rounded-full bg-red-600 text-white" onClick={handleDeleteUser}>
-              Delete Account
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+
     </div>
   );
 }
