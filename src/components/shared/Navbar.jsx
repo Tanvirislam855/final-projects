@@ -19,7 +19,6 @@ import {
   SheetTitle,
   SheetClose,
 } from "@/components/ui/sheet";
-import { authClient } from "@/lib/auth-client";
 import SignOut from "./SignOut";
 import ScrollHeader from "./ScrollHeader";
 import WishListIcon from "./WishListIcon";

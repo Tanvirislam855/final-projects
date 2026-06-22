@@ -36,6 +36,7 @@ const SignInPage = () => {
 
     if (data?.user) {
       toast.success("User signed in successfully!");
+      router.refresh();
       router.push("/");
     }
   } catch (err) {

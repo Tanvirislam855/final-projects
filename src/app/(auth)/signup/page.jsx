@@ -88,6 +88,7 @@ const SignUpPage = () => {
       }
 
       if (session?.user || session) {
+        router.refresh();
         router.push('/');
       }
     } catch (err) {
