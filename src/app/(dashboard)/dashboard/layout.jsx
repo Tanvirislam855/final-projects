@@ -1,9 +1,16 @@
 import { DashboardSidebar } from "@/components/dashboard/DashboardSidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Toaster } from "react-hot-toast";
+import { getUserSession } from "@/lib/core/session";
+import { redirect } from "next/navigation";
 
+const DashboardLayout = async ({ children }) => {
+  const user = await getUserSession();
 
-const DashboardLayout = ({ children }) => {
+  if (!user) {
+    redirect("/signIn");
+  }
+
   return (
     <SidebarProvider>
       <DashboardSidebar />

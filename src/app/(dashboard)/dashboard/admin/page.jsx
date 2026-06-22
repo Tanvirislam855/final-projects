@@ -6,7 +6,7 @@ import { protectedFetch } from '@/lib/core/server';
 const AdminPage = async () => {
     const user = await getUserSession();
       const dashboardData=await protectedFetch('/admin-dashboard');
-
+      
     return (
         <div>
             <AdminOverview dashboardData={dashboardData}/>
