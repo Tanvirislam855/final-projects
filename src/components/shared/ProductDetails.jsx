@@ -1,9 +1,19 @@
+'use client'
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Heart, ShoppingCart, ShieldCheck, Phone, User, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FadeLeft, FadeRight, FadeUp, StaggerContainer, StaggerItem } from "@/components/shared/AnimatedDiv";
 
-export default function ProductDetailsPage({ product }) {
+export default function ProductDetailsPage({ product, user }) {
+  const router = useRouter();
+
+  const handleBuyNow = (e) => {
+    if (!user) {
+      e.preventDefault();
+      router.push("/signIn");
+    }
+  }
 
   if (!product) {
     return <div className="py-12 text-center text-muted-foreground">Loading product details...</div>;
@@ -59,7 +69,7 @@ export default function ProductDetailsPage({ product }) {
             </div>
 
             <div className="flex gap-4">
-              <form className="w-full" action="/api/checkout_sessions" method="POST">
+              <form className="w-full" action="/api/checkout_sessions" method="POST" onSubmit={handleBuyNow}>
                 <input type="hidden" name="productId" value={product._id} />
                 <Button type="submit" size="lg" className="flex-1 w-full rounded-full bg-[#3E5F47] hover:bg-[#304B38] text-white text-sm font-medium transition-all duration-200">
                   <ShoppingCart className="mr-2 h-5 w-5" />

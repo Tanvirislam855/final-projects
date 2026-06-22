@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Heart, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { addToWishList } from "@/lib/actions/wishlist";
@@ -9,9 +10,14 @@ import ShowToast from "@/components/shared/ShowToast";
 import { motion } from "framer-motion";
 
 export default function ProductCard({ product, user }) {
+  const router = useRouter();
   const [toastProps, setToastProps] = useState(null);
 
   const handleAddWishList = async (data) => {
+    if (!user) {
+      router.push("/signIn");
+      return;
+    }
     const { _id, ...rest } = data;
     try {
       const insertedData = {
@@ -30,6 +36,13 @@ export default function ProductCard({ product, user }) {
       }
     } catch (err) {
       setToastProps({ message: err?.message || "Failed to add to wishlist", type: "error" });
+    }
+  }
+
+  const handleBuyNow = (e) => {
+    if (!user) {
+      e.preventDefault();
+      router.push("/signIn");
     }
   }
 
@@ -72,7 +85,7 @@ export default function ProductCard({ product, user }) {
         </div>
 
         <div className="flex gap-3">
-          <form className="w-full" action="/api/checkout_sessions" method="POST">
+          <form className="w-full" action="/api/checkout_sessions" method="POST" onSubmit={handleBuyNow}>
             <input type="hidden" name="productId" value={product._id} />
             <Button type="submit" size="lg" className="flex-1 w-full rounded-full bg-[#3E5F47] hover:bg-[#304B38] text-white text-sm font-medium transition-all duration-200">
               <ShoppingCart className="mr-2 h-5 w-5" />

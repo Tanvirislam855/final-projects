@@ -16,6 +16,11 @@ export async function POST(req) {
     const product = await serverFetch(`/api/product/${productId}`)
 
     const user = await getUserSession();
+
+    if (!user) {
+      return NextResponse.redirect(new URL("/signIn", origin));
+    }
+
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
 
