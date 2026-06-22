@@ -57,40 +57,42 @@ export default async function PaymentHistoryPage() {
 
       <FadeUp delay={0.1}>
         <div className="hidden md:block rounded-xl border bg-white shadow-sm overflow-hidden">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b bg-muted/50">
-                <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3.5">Transaction ID</th>
-                <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3.5">Product</th>
-                <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3.5">Amount</th>
-                <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3.5">Date</th>
-                <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3.5">Status</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100">
-              {payments.map((payment) => (
-                <tr key={payment._id} className="hover:bg-gray-50/50 transition-colors">
-                  <td className="px-5 py-4">
-                    <span className="font-mono text-xs text-gray-500">{payment.transactionId}</span>
-                  </td>
-                  <td className="px-5 py-4 text-sm font-medium text-gray-900">{payment.productName}</td>
-                  <td className="px-5 py-4">
-                    <span className="font-semibold" style={{ color: "#3E5F47" }}>
-                      ৳{payment.price?.toLocaleString()}
-                    </span>
-                  </td>
-                  <td className="px-5 py-4 text-sm text-gray-500">
-                    {new Date(payment.createdAt).toLocaleDateString("en-US", {
-                      year: "numeric", month: "short", day: "numeric",
-                    })}
-                  </td>
-                  <td className="px-5 py-4">
-                    <StatusBadge status={payment.paymentStatus} />
-                  </td>
+          <div className="w-full overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b bg-muted/50">
+                  <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3.5">Transaction ID</th>
+                  <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3.5">Product</th>
+                  <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3.5">Amount</th>
+                  <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3.5">Date</th>
+                  <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3.5">Status</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {payments.map((payment) => (
+                  <tr key={payment._id} className="hover:bg-gray-50/50 transition-colors">
+                    <td className="px-5 py-4">
+                      <span className="font-mono text-xs text-gray-500">{payment.transactionId}</span>
+                    </td>
+                    <td className="px-5 py-4 text-sm font-medium text-gray-900">{payment.productName}</td>
+                    <td className="px-5 py-4">
+                      <span className="font-semibold" style={{ color: "#3E5F47" }}>
+                        ৳{payment.price?.toLocaleString()}
+                      </span>
+                    </td>
+                    <td className="px-5 py-4 text-sm text-gray-500">
+                      {new Date(payment.createdAt).toLocaleDateString("en-US", {
+                        year: "numeric", month: "short", day: "numeric",
+                      })}
+                    </td>
+                    <td className="px-5 py-4">
+                      <StatusBadge status={payment.paymentStatus} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </FadeUp>
 

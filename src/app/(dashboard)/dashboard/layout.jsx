@@ -8,7 +8,7 @@ const DashboardLayout = ({ children }) => {
     <SidebarProvider>
       <DashboardSidebar />
 
-      <main className="flex-1">
+      <main className="flex-1 min-w-0">
         <div className="p-4 border-b">
           <SidebarTrigger />
         </div>
