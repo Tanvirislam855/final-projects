@@ -6,7 +6,9 @@ import { serverFetch } from "@/lib/core/server";
 import { FadeUp, StaggerContainer, StaggerItem } from "@/components/shared/AnimatedDiv";
 
 export default async function FeaturedProducts() {
-  const products = await serverFetch('/api/featuredProduct');
+  // const products = await serverFetch('/api/products');
+  const response = await serverFetch('/api/products');
+const products = response?.products || [];
   return (
     <section className="py-24 overflow-hidden">
       <div className="container mx-auto px-4">

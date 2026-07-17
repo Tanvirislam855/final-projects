@@ -14,17 +14,17 @@ export default function HeroSection() {
               <div className="inline-flex items-center gap-2 rounded-full bg-[#ECEAE5] px-4 py-2">
                 <Leaf className="h-4 w-4 text-[#3E5F47]" />
                 <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  Circular Marketplace
+                  PRE-LOVED MARKETPLACE
                 </span>
               </div>
 
               <h1 className="mt-8 max-w-xl section-title lg:text-7xl leading-tight">
-                Marketplace for items that deserve a second life.
+               Better products. Longer lifespans.
               </h1>
 
               <p className="mt-8 max-w-xl section-subtitle leading-8">
-                Buy and sell pre-owned electronics, furniture, and fashion.
-                Reducing waste by keeping quality goods in circulation.
+                Buy and sell verified pre-owned tech, apparel,
+                 and home essentials with total peace of mind.
               </p>
 
               <div className="mt-10 flex flex-wrap gap-4">

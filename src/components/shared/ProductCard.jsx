@@ -57,7 +57,7 @@ export default function ProductCard({ product, user }) {
       {toastProps && <ShowToast {...toastProps} />}
       <div className="relative h-64 overflow-hidden">
         <Image
-          src={product.images[0]}
+          src={product.images?.[0] || product.image || "/placeholder.png"}
           alt={product.title}
           fill
           className="object-cover transition duration-500 group-hover:scale-105"
