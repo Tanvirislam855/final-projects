@@ -70,48 +70,48 @@ export default function HeroSection() {
                       <ShieldCheck className="h-6 w-6 text-[#3E5F47]" />
                     </div>
 
-                    <div>
+                    {/* <div>
                       <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                        Trust Score
+                        
                       </p>
 
                       <h3 className="text-2xl font-bold">
                         98% safe trades
                       </h3>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </FadeUp>
             </div>
-          </FadeRight>
+          </FadeRight> 
         </div>
 
         <FadeUp delay={0.2}>
           <div className="mt-24 border-t pt-12 flex items-center justify-center">
             <div className="grid gap-10 md:grid-cols-4">
               <div>
-                <h2 className="text-5xl font-bold">124k+</h2>
+                <h2 className="text-5xl font-bold">200k+</h2>
                 <p className="mt-3 text-sm uppercase tracking-[0.2em] text-muted-foreground">
                   Listed Products
                 </p>
               </div>
 
               <div>
-                <h2 className="text-5xl font-bold">48k</h2>
+                <h2 className="text-5xl text-green-950 font-bold">70k</h2>
                 <p className="mt-3 text-sm uppercase tracking-[0.2em] text-muted-foreground">
                   Verified Sellers
                 </p>
               </div>
 
               <div>
-                <h2 className="text-5xl font-bold">92%</h2>
+                <h2 className="text-5xl font-bold">85%</h2>
                 <p className="mt-3 text-sm uppercase tracking-[0.2em] text-muted-foreground">
                   Success Rate
                 </p>
               </div>
 
               <div>
-                <h2 className="text-5xl font-bold">12t</h2>
+                <h2 className="text-5xl text-amber-500 font-bold">40+</h2>
                 <p className="mt-3 text-sm uppercase tracking-[0.2em] text-muted-foreground">
                   Carbon Saved
                 </p>
