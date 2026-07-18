@@ -13,15 +13,15 @@ const products = response?.products || [];
     <section className="py-24 overflow-hidden">
       <div className="container mx-auto px-4">
         <FadeUp>
-          <div className="mb-14 flex items-end justify-between">
+          <div className="mb-14 flex flex-col items-center justify-center text-center gap-3 ">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#ECEAE5] px-4 py-2 mb-6">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#ECEAE5] px-4 py-2  mx-auto text-center justify-center">
                 <Sparkles className="h-4 w-4 text-[#3E5F47]" />
                 <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  Fresh Today
+                  Recently Added
                 </span>
               </div>
-              <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">Featured Items</h2>
+              <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">Featured Products</h2>
             </div>
             <Link
               href="/products"

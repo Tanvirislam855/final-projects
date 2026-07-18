@@ -4,22 +4,22 @@ import { FadeUp, StaggerContainer, StaggerItem } from "@/components/shared/Anima
 
 const stories = [
   {
-    quote: "Found the exact film camera I'd been hunting for two years — half the price and the seller met me in person to walk through every feature.",
-    name: "Hannah T.",
-    role: "Buyer • Boston, MA",
-    image: "https://i.pravatar.cc/150?img=32",
+    quote: "I have been looking for a specific vintage jacket for over a year and finally found it here in perfect condition for an amazing price",
+    name: "Sarah J.",
+    role: "Buyer San Francisco, CA",
+    // image: "https://i.pravatar.cc/150?img=32",
   },
   {
-    quote: "Cleared a garage full of furniture in three weekends. The verified-seller badge made conversations easy and buyers showed up serious.",
-    name: "Marcus K.",
-    role: "Seller • Austin, TX",
-    image: "https://i.pravatar.cc/150?img=12",
+    quote: "Listing my antique clock collection was a breeze. I had several serious inquiries within hours and sold three pieces by end of the day.",
+    name: "Leo M.",
+    role: "Seller • Dhaka ,Bangladesh",
+    // image: "https://i.pravatar.cc/150?img=12",
   },
   {
     quote: "I furnished my new apartment for under $600 entirely through ReSell Hub. Better quality than anything new at the same price.",
-    name: "Elena S.",
-    role: "Buyer • Portland, OR",
-    image: "https://i.pravatar.cc/150?img=5",
+    name: "Messi.",
+    role: "Buyer • Argentina,",
+    // image: "https://i.pravatar.cc/150?img=5",
   },
 ];
 
@@ -28,9 +28,9 @@ export default function SuccessStories() {
     <section className="py-5 overflow-hidden">
       <div className="container mx-auto px-4">
         <FadeUp>
-          <div className="max-w-xl">
-            <p className="mb-3 text-xs font-medium uppercase tracking-[0.25em] text-[#7B6A58]">Success Stories</p>
-            <h2 className="section-title text-[#181818]">From the community</h2>
+          <div className="max-w-xl mx-auto text-center">
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.25em] text-[#7B6A58]">TESTIMONIALS</p>
+            <h2 className="section-title text-[#181818]">Community Voices</h2>
           </div>
         </FadeUp>
 

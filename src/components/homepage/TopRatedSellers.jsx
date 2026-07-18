@@ -3,9 +3,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { FadeUp, StaggerContainer, StaggerItem } from "@/components/shared/AnimatedDiv";
 
 const sellers = [
-  { name: "Elena S.", rating: "4.9", badge: "VERIFIED EXPERT", listings: 24, category: "Electronics", image: "https://i.pravatar.cc/150?img=5" },
-  { name: "Marcus K.", rating: "5.0", badge: "FAST RESPONDER", listings: 12, category: "Furniture", image: "https://i.pravatar.cc/150?img=12" },
-  { name: "Sarah J.", rating: "4.8", badge: "TOP RATED", listings: 56, category: "Home Goods", image: "https://i.pravatar.cc/150?img=32" },
+  { name: "Sophia L.", rating: "5.0", badge: "PREMIUM SELLER", listings: 31, category: "Smart Devices", image: "https://i.pravatar.cc/150?img=5" },
+  { name: "James B.", rating: "4.9", badge: "QUICK SHIPPER", listings: 15, category: "Home & Living", image: "https://i.pravatar.cc/150?img=12" },
+  { name: "Mia C.", rating: "4.8", badge: "HIGHLY RECOMMENDED", listings: 47, category: "Fashion & Apparel", image: "https://i.pravatar.cc/150?img=32" }
 ];
 
 export default function TopRatedSellers() {
@@ -15,7 +15,7 @@ export default function TopRatedSellers() {
         <FadeUp>
           <div className="max-w-2xl">
             <h2 className="section-title text-[#161616]">Top Rated Sellers</h2>
-            <p className="mt-4 section-subtitle text-[#727272]">Vetted by the community for fair pricing and prompt shipping.</p>
+            <p className="mt-4 section-subtitle text-[#727272]"> The community for fair pricing and prompt shipping.</p>
           </div>
         </FadeUp>
 

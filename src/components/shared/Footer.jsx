@@ -44,10 +44,10 @@ export default function Footer() {
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#3E5F47]">
                     <ShoppingBag className="h-6 w-6 text-white" />
                   </div>
-                  <span>NeoMarket</span>
+                  <span>SwapBD</span>
                 </Link>
                 <p className="max-w-xs text-sm leading-relaxed text-[#B0B3A6]">
-                  Your trusted circular marketplace for pre-owned electronics, furniture, and fashion. Join us in making commerce sustainable.
+                  The smarter way to trade, buy, and sell. Give your pre-loved goods a second life and join a growing community built on smart, conscious trading.
                 </p>
                 <div className="flex items-center gap-4 pt-2">
                   <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-[#273B2D] transition-colors hover:bg-[#3E5F47] hover:text-white">
@@ -78,7 +78,7 @@ export default function Footer() {
                   <li><Link href="/products" className="transition-colors hover:text-white">Shop Products</Link></li>
                   <li><Link href="/categories" className="transition-colors hover:text-white">Categories</Link></li>
                   <li><Link href="/about" className="transition-colors hover:text-white">About Us</Link></li>
-                  <li><Link href="/sell" className="transition-colors hover:text-white">Start Selling</Link></li>
+                  <li><Link href="/sell" className="transition-colors hover:text-white">Start shoping</Link></li>
                 </ul>
               </div>
             </StaggerItem>
@@ -87,11 +87,11 @@ export default function Footer() {
               <div>
                 <h3 className="mb-6 text-lg font-semibold text-white">Support</h3>
                 <ul className="space-y-4 text-sm text-[#B0B3A6]">
-                  <li><Link href="/faq" className="transition-colors hover:text-white">Help Center & FAQ</Link></li>
-                  <li><Link href="/shipping" className="transition-colors hover:text-white">Shipping & Returns</Link></li>
+                  <li><Link href="/faq" className="transition-colors hover:text-white">FAQ</Link></li>
+                  <li><Link href="/shipping" className="transition-colors hover:text-white">Shipping & Refund</Link></li>
                   <li><Link href="/terms" className="transition-colors hover:text-white">Terms of Service</Link></li>
                   <li><Link href="/privacy" className="transition-colors hover:text-white">Privacy Policy</Link></li>
-                  <li><Link href="/trust" className="transition-colors hover:text-white">Trust & Safety</Link></li>
+                  <li><Link href="/trust" className="transition-colors hover:text-white">Trust</Link></li>
                 </ul>
               </div>
             </StaggerItem>
@@ -102,15 +102,15 @@ export default function Footer() {
                 <ul className="space-y-4 text-sm text-[#B0B3A6]">
                   <li className="flex items-start gap-3">
                     <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-[#3E5F47]" />
-                    <span>123 Market Avenue,<br />San Francisco, CA 94103</span>
+                    <span>507 West Nakhalpara,<br />Dhaka,1200</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <Phone className="h-5 w-5 shrink-0 text-[#3E5F47]" />
-                    <span>+1 (555) 123-4567</span>
+                    <span>+08801733540000</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <Mail className="h-5 w-5 shrink-0 text-[#3E5F47]" />
-                    <a href="mailto:hello@neomarket.com" className="transition-colors hover:text-white">hello@neomarket.com</a>
+                    <a href="mailto:welcome@swapbd.com" className="transition-colors hover:text-white">welcome@swapbd.com</a>
                   </li>
                 </ul>
               </div>
@@ -120,7 +120,7 @@ export default function Footer() {
 
         <FadeIn>
           <div className="mt-16 border-t border-[#273B2D] pt-8 text-center text-sm text-[#B0B3A6]">
-            <p>&copy; {currentYear} NeoMarket. All rights reserved.</p>
+            <p>&copy; {currentYear} SwapBD. All rights reserved.</p>
           </div>
         </FadeIn>
       </div>

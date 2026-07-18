@@ -54,7 +54,7 @@ export default function HeroSection() {
 
               <div className="relative overflow-hidden rounded-[40px]">
                 <Image
-                  src="/heroImage.jpg"
+                  src="/store.jpg"
                   alt="Hero"
                   width={800}
                   height={800}
@@ -104,7 +104,7 @@ export default function HeroSection() {
               </div>
 
               <div>
-                <h2 className="text-5xl font-bold">85%</h2>
+                <h2 className="text-5xl text-green-950 font-bold">85%</h2>
                 <p className="mt-3 text-sm uppercase tracking-[0.2em] text-muted-foreground">
                   Success Rate
                 </p>

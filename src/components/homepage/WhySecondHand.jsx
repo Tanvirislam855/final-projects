@@ -3,31 +3,30 @@ import { FadeUp, StaggerContainer, StaggerItem } from "@/components/shared/Anima
 
 const featured = {
   icon: Recycle,
-  stat: "92M",
-  statUnit: "tons of waste / year",
-  title: "Keeps Items Out of Landfills",
-  description:
-    "Every pre-owned purchase saves an item from being discarded — and chips away at the 92 million tons sent to landfills annually.",
+  stat: "75M",
+  statUnit: "kg of CO2 diverted / year",
+  title: "Giving Items a Second Life",
+  description: "By extending the lifecycle of everyday goods, our community directly prevents millions of kilograms of usable products from rotting in local trash piles.",
 };
 
 const benefits = [
   {
     icon: Trees,
-    stat: "80%",
-    title: "Reduces Carbon Footprint",
-    description: "Avoids the emissions from manufacturing a new product from raw materials.",
+    stat: "65%",
+    title: "Lower Environmental Impact",
+    description: "Choosing pre-owned dramatically cuts down the heavy industrial processing required to manufacture brand-new goods from scratch.",
   },
   {
     icon: Droplets,
-    stat: "2,700L",
-    title: "Conserves Water & Resources",
-    description: "The water it takes to make one new cotton shirt — saved by buying used.",
+    stat: "4,200L",
+    title: "Eco-Conscious Resource Saving",
+    description: "Every successful trade helps bypass the massive manufacturing supply chains that exhaust vital planetary water reserves.",
   },
   {
     icon: Factory,
-    stat: "0",
-    title: "Less Packaging & Transport",
-    description: "Skips the factory-to-warehouse chain — less plastic, less long-haul shipping.",
+    stat: "Zero",
+    title: "Minimal Waste Delivery",
+    description: "Skip the heavy retail boxes and industrial factory wrapping. Simple, direct peer-to-peer trading keeps excess plastic out of the loop.",
   },
 ];
 

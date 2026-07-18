@@ -9,20 +9,20 @@ export default function CategorySection() {
     <section className="py-24 overflow-hidden">
       <div className="container mx-auto px-4">
         <FadeUp>
-          <div className="max-w-xl mb-14">
+          <div className="max-w-xl mb-14 mx-auto text-center">
             <div className="inline-flex items-center gap-2 rounded-full bg-[#ECEAE5] px-4 py-2 mb-6">
               <Leaf className="h-4 w-4 text-[#3E5F47]" />
               <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                Popular Categories
+                WHAT ARE YOU LOOKING FOR?
               </span>
             </div>
 
             <h2 className="text-4xl font-bold text-foreground sm:text-5xl">
-              Shop by Category
+              Discover Top Categories
             </h2>
 
-            <p className="mt-6 text-lg text-muted-foreground">
-              Five fast-moving departments to start your search.
+            <p className="mt-6 text-lg text-gray-700">
+              Start exploring our curated collections to buy or sell today.
             </p>
           </div>
         </FadeUp>
@@ -45,7 +45,7 @@ export default function CategorySection() {
                       className="aspect-square w-full object-cover transition duration-700 group-hover:scale-110"
                     />
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                     <div className="absolute right-4 top-4 translate-x-4 -translate-y-4 rounded-full bg-white/90 p-2 opacity-0 backdrop-blur-sm shadow-sm transition-all duration-500 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100">
                       <ArrowUpRight className="h-5 w-5 text-[#3E5F47]" />
@@ -53,11 +53,11 @@ export default function CategorySection() {
                   </div>
 
                   <div className="mt-5 flex items-center justify-between px-2">
-                    <h3 className="font-semibold text-lg text-foreground transition-colors group-hover:text-[#3E5F47]">
+                    <h3 className="font-semibold text-lg text-foreground transition-colors group-hover:bg-emerald-500">
                       {category.title}
                     </h3>
 
-                    <span className="rounded-full bg-[#ECEAE5] px-3 py-1 text-xs font-medium text-[#3E5F47] transition-colors group-hover:bg-[#3E5F47] group-hover:text-white">
+                    <span className="rounded-full bg-[#ECEAE5] px-3 py-1 text-xs font-medium text-[#3E5F47] transition-colors group-hover:bg-amber-500 group-hover:text-white">
                       {category.description}
                     </span>
                   </div>
