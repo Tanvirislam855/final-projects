@@ -23,8 +23,7 @@ export default function HeroSection() {
               </h1>
 
               <p className="mt-8 max-w-xl section-subtitle leading-8">
-                Buy and sell verified pre-owned tech, apparel,
-                 and home essentials with total peace of mind.
+                Your ultimate marketplace to buy and sell anything with total peace of mind.
               </p>
 
               <div className="mt-10 flex flex-wrap gap-4">
@@ -32,7 +31,7 @@ export default function HeroSection() {
                   <Button
                     className="h-14 rounded-full bg-[#3E5F47] px-8 hover:bg-[#304B38]"
                   >
-                    Browse Collection
+                    Browse Products
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
