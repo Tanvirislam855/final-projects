@@ -9,7 +9,7 @@ const stats = [
 
 export default function MarketplaceStats() {
   return (
-    <section className="py-10 overflow-hidden">
+    <section className="py-10 overflow-hidden bg-gray-300">
       <div className="container mx-auto px-4">
         <FadeUp>
           <div className="max-w-xl">

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Phone, MapPin, ShoppingBag } from "lucide-react";
+import { PhoneCall,ShoppingBasket, Mails, MapPinned } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/shared/AnimatedDiv";
 
 const FacebookIcon = (props) => (
@@ -34,15 +34,15 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#1A281E] pt-20 pb-10 text-[#E7E1D9]">
+    <footer className="bg-gray-700 pt-20 pb-10 text-[#E7E1D9]">
       <div className="container mx-auto px-4">
         <StaggerContainer>
           <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
             <StaggerItem>
               <div className="space-y-6">
                 <Link href="/" className="flex items-center gap-2 text-2xl font-bold tracking-tight text-white transition-colors hover:opacity-90">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#3E5F47]">
-                    <ShoppingBag className="h-6 w-6 text-white" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white">
+                    <ShoppingBasket className="h-6 w-6 text-black" />
                   </div>
                   <span>SwapBD</span>
                 </Link>
@@ -50,19 +50,19 @@ export default function Footer() {
                   The smarter way to trade, buy, and sell. Give your pre-loved goods a second life and join a growing community built on smart, conscious trading.
                 </p>
                 <div className="flex items-center gap-4 pt-2">
-                  <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-[#273B2D] transition-colors hover:bg-[#3E5F47] hover:text-white">
+                  <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-black transition-colors hover:bg-gray-800 hover:text-white">
                     <FacebookIcon className="h-4 w-4" />
                     <span className="sr-only">Facebook</span>
                   </a>
-                  <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-[#273B2D] transition-colors hover:bg-[#3E5F47] hover:text-white">
+                  <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-black transition-colors hover:bg-gray-800 hover:text-white">
                     <TwitterIcon className="h-4 w-4" />
                     <span className="sr-only">Twitter</span>
                   </a>
-                  <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-[#273B2D] transition-colors hover:bg-[#3E5F47] hover:text-white">
+                  <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-black transition-colors hover:bg-gray-800 hover:text-white">
                     <InstagramIcon className="h-4 w-4" />
                     <span className="sr-only">Instagram</span>
                   </a>
-                  <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-[#273B2D] transition-colors hover:bg-[#3E5F47] hover:text-white">
+                  <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-black transition-colors hover:bg-gray-800 hover:text-white">
                     <LinkedinIcon className="h-4 w-4" />
                     <span className="sr-only">LinkedIn</span>
                   </a>
@@ -101,15 +101,15 @@ export default function Footer() {
                 <h3 className="mb-6 text-lg font-semibold text-white">Contact Info</h3>
                 <ul className="space-y-4 text-sm text-[#B0B3A6]">
                   <li className="flex items-start gap-3">
-                    <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-[#3E5F47]" />
+                    <MapPinned className="mt-0.5 h-5 w-5 shrink-0 text-white" />
                     <span>507 West Nakhalpara,<br />Dhaka,1200</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Phone className="h-5 w-5 shrink-0 text-[#3E5F47]" />
+                    <PhoneCall className="h-5 w-5 shrink-0 text-white" />
                     <span>+08801733540000</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Mail className="h-5 w-5 shrink-0 text-[#3E5F47]" />
+                    <Mails className="h-5 w-5 shrink-0 text-white" />
                     <a href="mailto:welcome@swapbd.com" className="transition-colors hover:text-white">welcome@swapbd.com</a>
                   </li>
                 </ul>
@@ -119,7 +119,7 @@ export default function Footer() {
         </StaggerContainer>
 
         <FadeIn>
-          <div className="mt-16 border-t border-[#273B2D] pt-8 text-center text-sm text-[#B0B3A6]">
+          <div className="mt-16 border-t border-gray-950 pt-8 text-center text-sm text-[#B0B3A6]">
             <p>&copy; {currentYear} SwapBD. All rights reserved.</p>
           </div>
         </FadeIn>

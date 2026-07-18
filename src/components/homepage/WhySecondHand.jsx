@@ -1,9 +1,9 @@
-import { Recycle, Trees, Droplets, Factory } from "lucide-react";
+import { Recycle, Trees, Droplets, Factory, ShieldPlus, TentTree } from "lucide-react";
 import { FadeUp, StaggerContainer, StaggerItem } from "@/components/shared/AnimatedDiv";
 
 const featured = {
   icon: Recycle,
-  stat: "75M",
+  stat: "10M",
   statUnit: "kg of CO2 diverted / year",
   title: "Giving Items a Second Life",
   description: "By extending the lifecycle of everyday goods, our community directly prevents millions of kilograms of usable products from rotting in local trash piles.",
@@ -32,13 +32,13 @@ const benefits = [
 
 export default function WhySecondHand() {
   return (
-    <section className="overflow-hidden bg-[#F9F8F5] py-24">
+    <section className="overflow-hidden bg-gray-300 py-24">
       <div className="container mx-auto px-4">
 
 
         {/* Featured stat banner */}
         <FadeUp>
-          <div className="mt-12 grid gap-8 rounded-[40px] bg-[#3E5F47] p-10 text-white md:grid-cols-[auto_1fr] md:items-center md:gap-12 md:p-14">
+          <div className="mt-12 grid gap-8 rounded-[40px] bg-emerald-900 p-10 text-white md:grid-cols-[auto_1fr] md:items-center md:gap-12 md:p-14">
             <div className="flex items-baseline gap-3 md:flex-col md:items-start md:gap-1">
               <span className="font-serif text-7xl leading-none md:text-8xl">
                 {featured.stat}
@@ -50,7 +50,7 @@ export default function WhySecondHand() {
 
             <div className="md:border-l md:border-white/15 md:pl-12">
               <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-white/10">
-                <featured.icon className="h-5 w-5" />
+                <TentTree className="h-5 w-5" />
               </div>
               <h3 className="text-2xl font-semibold">{featured.title}</h3>
               <p className="mt-2 max-w-md leading-relaxed text-white/70">
@@ -66,13 +66,13 @@ export default function WhySecondHand() {
             {benefits.map((benefit) => (
               <StaggerItem key={benefit.title}>
                 <div className="group flex items-start gap-4 py-6 md:flex-col md:gap-3 md:px-8 md:py-8">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#3E5F47]/20 text-[#3E5F47] transition-colors duration-300 group-hover:bg-[#3E5F47] group-hover:text-white">
-                    <benefit.icon className="h-4 w-4" />
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#3E5F47]/20 text-black transition-colors duration-300 group-hover:bg-black group-hover:text-white">
+                    <ShieldPlus className="h-4 w-4" />
                   </div>
 
                   <div>
                     <div className="flex items-baseline gap-2">
-                      <span className="font-serif text-2xl text-[#3E5F47]">
+                      <span className="font-serif text-2xl text-gray-700">
                         {benefit.stat}
                       </span>
                       <h3 className="text-base font-semibold text-[#161616]">

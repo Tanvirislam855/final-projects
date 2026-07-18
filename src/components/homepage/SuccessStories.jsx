@@ -25,7 +25,7 @@ const stories = [
 
 export default function SuccessStories() {
   return (
-    <section className="py-5 overflow-hidden">
+    <section className="py-5 overflow-hidden bg-gray-300">
       <div className="container mx-auto px-4">
         <FadeUp>
           <div className="max-w-xl mx-auto text-center">

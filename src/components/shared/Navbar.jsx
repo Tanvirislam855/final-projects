@@ -28,8 +28,8 @@ export default async function Navbar() {
   
   return (
     <ScrollHeader>
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        
+
+<div className="mx-auto flex h-16 max-w-7xl items-center justify-between bg-gray-800 text-white rounded-full px-6 shadow-xl my-4">        
         <div className="flex items-center gap-2">
           {/* Mobile Menu */}
           <Sheet>
@@ -39,7 +39,7 @@ export default async function Navbar() {
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-[300px] pl-6">
+            <SheetContent side="left" className="w-75 pl-6">
               <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
               <div className="flex flex-col gap-8 mt-6">
                 <SheetClose asChild>
@@ -88,23 +88,23 @@ export default async function Navbar() {
 
         {/* Navigation (Desktop) */}
         <nav className="hidden md:flex items-center gap-6">
-          <Link href="/" className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+          <Link href="/" className="flex items-center gap-3 text-lg font-extrabold text-white/50 hover:text-white transition-all duration-300 ease-in-out hover:scale-105">
             <Home className="h-4 w-4" />
             <span>Home</span>
           </Link>
 
-          <Link href="/products" className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+          <Link href="/products" className="flex items-center gap-3 text-lg font-extrabold text-white/50 hover:text-white transition-all duration-300 ease-in-out hover:scale-105">
             <Package className="h-4 w-4" />
             <span>Products</span>
           </Link>
 
-          <Link href="/categories" className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+          <Link href="/categories" className="flex items-center gap-3 text-lg font-extrabold text-white/50 hover:text-white transition-all duration-300 ease-in-out hover:scale-105">
             <List className="h-4 w-4" />
             <span>Categories</span>
           </Link>
 
           {user && (
-            <Link href={`/dashboard/${user?.role}`} className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+            <Link href={`/dashboard/${user?.role}`} className="flex items-center gap-3 text-lg font-extrabold text-white/50 hover:text-white transition-all duration-300 ease-in-out hover:scale-105">
               <LayoutDashboard className="h-4 w-4" />
               <span>Dashboard</span>
             </Link>

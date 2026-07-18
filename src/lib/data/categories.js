@@ -12,45 +12,45 @@ const categories = [
   {
     title: "Electronics",
     icon: Laptop,
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
-    description: "Gadgets, devices & accessories",
+    image: "https://www.matric.com/hubfs/classes%20of%20electronics.jpg",
+    description: "Devices & accessories",
   },
   {
     title: "Fashion",
     icon: Shirt,
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8",
-    description: "Clothing, shoes & accessories",
+    image: "https://www.cato.org/sites/cato.org/files/styles/optimized/public/2023-11/fast-fashion2.jpeg?itok=qCMa7eGV",
+    description: "Clothing & accessories",
   },
   {
     title: "Furniture",
     icon: Sofa,
-    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
-    description: "Home & office furnishings",
+    image: "https://ecdn.dhakatribune.net/contents/cache/images/640x359x1/uploads/dten/2019/09/furniture-mehedi-hasan00006-1568833991627.jpg",
+    description: "Home & furnishings",
   },
   {
     title: "Gaming",
     icon: Gamepad2,
-    image: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db",
-    description: "Consoles, games & accessories",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUrdTuuyyqKXUxCq0gdSKEaKhlzIRgvnhg_HZzSBew_P-KDSoXwy6JAsI&s=10",
+    description: "Consoles & accessories",
   },
   {
-    title: "Home Appliances",
+    title: "Books",
     icon: Refrigerator,
-    image: "https://images.unsplash.com/photo-1586208958839-06c17cacdf08",
-    description: "Kitchen & household appliances",
+    image: "https://media.istockphoto.com/id/2060984408/photo/stack-of-colorful-books-education-background-back-to-school-book-hardback-colorful-books-on.jpg?s=612x612&w=0&k=20&c=S-a-AjcVaONddGxfcfbNckme8H7ujSllz-MjgmcKrVQ=",
+    description: "self improvement books",
   },
-  {
-    title: "Musical Instruments",
-    icon: Guitar,
-    image: "https://images.unsplash.com/photo-1510915361894-db8b60106cb1",
-    description: "Guitars, keyboards & more",
-  },
-  {
-    title: "Sports",
-    icon: Dumbbell,
-    image: "https://images.unsplash.com/photo-1517649763962-0c623066013b",
-    description: "Fitness equipment",
-  },
+  // {
+  //   title: "Musical Instruments",
+  //   icon: Guitar,
+  //   image: "https://images.unsplash.com/photo-1510915361894-db8b60106cb1",
+  //   description: "Guitars, keyboards & more",
+  // },
+  // {
+  //   title: "Sports",
+  //   icon: Dumbbell,
+  //   image: "https://images.unsplash.com/photo-1517649763962-0c623066013b",
+  //   description: "Fitness equipment",
+  // },
 ];
 
 export default categories;

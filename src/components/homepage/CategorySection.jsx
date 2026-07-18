@@ -1,17 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Leaf, ArrowUpRight } from "lucide-react";
+import {ArrowUpRight, Waypoints } from "lucide-react";
 import categories from "@/lib/data/categories";
 import { FadeUp, StaggerContainer, StaggerItem } from "@/components/shared/AnimatedDiv";
 
 export default function CategorySection() {
   return (
-    <section className="py-24 overflow-hidden">
+    <section className="py-24 overflow-hidden bg-gray-300">
       <div className="container mx-auto px-4">
         <FadeUp>
           <div className="max-w-xl mb-14 mx-auto text-center">
             <div className="inline-flex items-center gap-2 rounded-full bg-[#ECEAE5] px-4 py-2 mb-6">
-              <Leaf className="h-4 w-4 text-[#3E5F47]" />
+              <Waypoints className="h-4 w-4 text-red-400" />
               <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 WHAT ARE YOU LOOKING FOR?
               </span>
@@ -29,7 +29,7 @@ export default function CategorySection() {
 
         <StaggerContainer>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-            {categories.map((category) => (
+            {categories.slice(0, 5).map((category) => (
               <Link
                 key={category.title}
                 href={`/categories/${category.title}`}

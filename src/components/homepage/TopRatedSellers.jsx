@@ -10,7 +10,7 @@ const sellers = [
 
 export default function TopRatedSellers() {
   return (
-    <section className="py-24 overflow-hidden">
+    <section className="py-24 overflow-hidden bg-gray-300">
       <div className="container mx-auto px-4">
         <FadeUp>
           <div className="max-w-2xl">

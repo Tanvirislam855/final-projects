@@ -19,7 +19,7 @@ export default function CategoriesPage() {
       </p>
 
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {categories.map((category) => (
+        {categories.slice(0, 5).map((category) => (
           <Link
             key={category.title}
             href={`/categories/${category.title}`}

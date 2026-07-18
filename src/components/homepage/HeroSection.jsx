@@ -1,18 +1,18 @@
 import Image from "next/image";
-import { ArrowRight, Leaf, ShieldCheck } from "lucide-react";
+import { ArrowRight, Shuffle, TicketCheckIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { FadeLeft, FadeRight, FadeUp, StaggerContainer, staggerItem } from "@/components/shared/AnimatedDiv";
+import { FadeLeft, FadeRight, FadeUp,} from "@/components/shared/AnimatedDiv";
 import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <section className="py-20 overflow-hidden">
+    <section className="py-20 overflow-hidden bg-gray-300">
       <div className="container mx-auto px-4">
         <div className="grid items-center gap-16 lg:grid-cols-2">
           <FadeLeft>
             <div>
               <div className="inline-flex items-center gap-2 rounded-full bg-[#ECEAE5] px-4 py-2">
-                <Leaf className="h-4 w-4 text-[#3E5F47]" />
+                <Shuffle className="h-4 w-4 text-black" />
                 <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                   PRE-LOVED MARKETPLACE
                 </span>
@@ -29,7 +29,7 @@ export default function HeroSection() {
               <div className="mt-10 flex flex-wrap gap-4">
                 <Link href={'/products'}>
                   <Button
-                    className="h-14 rounded-full bg-[#3E5F47] px-8 hover:bg-[#304B38]"
+                    className="h-14 rounded-full bg-gray-500 px-8 hover:bg-gray-900 font-extrabold"
                   >
                     Browse Products
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -39,7 +39,7 @@ export default function HeroSection() {
                 <Link href={'/categories'}>
                   <Button
                     variant="secondary"
-                    className="h-14 rounded-full bg-[#ECEAE5] px-8 hover:bg-[#dfddd8]"
+                    className="h-14 rounded-full bg-[#ECEAE5] px-8 hover:bg-gray-400 font-extrabold"
                   >
                     Explore
                   </Button>
@@ -67,18 +67,18 @@ export default function HeroSection() {
                 <div className="absolute -bottom-6 left-0 rounded-[28px] border bg-white px-6 py-5 shadow-lg">
                   <div className="flex items-center gap-4">
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#ECEAE5]">
-                      <ShieldCheck className="h-6 w-6 text-[#3E5F47]" />
+                      <TicketCheckIcon className="h-6 w-6 text-gray-600 animate-bounce" />
                     </div>
 
-                    {/* <div>
+                     <div>
                       <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                         
                       </p>
 
-                      <h3 className="text-2xl font-bold">
-                        98% safe trades
+                      <h3 className="text-2xl font-bold animate-bounce">
+                        90% safe sell
                       </h3>
-                    </div> */}
+                    </div> 
                   </div>
                 </div>
               </FadeUp>
