@@ -13,13 +13,13 @@ export default function EmptyOrders() {
         <h2 className="text-2xl font-bold">No Orders Yet</h2>
 
         <p className="mt-3 text-muted-foreground">
-          You haven't received any customer orders yet. Keep your products
+           Keep your products
           available and customers will see them here once they place an order.
         </p>
 
         <Button
           asChild
-          className="mt-6 rounded-full bg-[#3E5F47] hover:bg-[#304B38]"
+          className="mt-6 rounded-full bg-black hover:bg-gray-500"
         >
           <Link href="/dashboard/seller">
             Dashboard

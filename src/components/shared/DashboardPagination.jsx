@@ -6,7 +6,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { FadeIn } from "@/components/shared/AnimatedDiv";
+// import { FadeIn } from "@/components/shared/AnimatedDiv";
 
 export default function DashboardPagination({
   currentPage,

@@ -320,7 +320,7 @@ export default function ManageUsers({ users }) {
               ) : (
                 <TableRow>
                   <TableCell colSpan={5} className="text-center py-8 text-muted-foreground">
-                    No users found matching the filter criteria.
+                    No users found matching.
                   </TableCell>
                 </TableRow>
               )}

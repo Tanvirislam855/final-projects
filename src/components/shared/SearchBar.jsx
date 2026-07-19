@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowDownWideNarrow, ArrowUpNarrowWide, CreditCardIcon, LogOutIcon, Search, SettingsIcon, UserIcon } from "lucide-react";
+import {  Search, } from "lucide-react";
 import {
   InputGroup,
   InputGroupAddon,
@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/input-group";
 import { Button } from "@/components/ui/button";
 import { redirect } from "next/navigation";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 
 export default function SearchBar({
   placeholder = "Search products...",
@@ -49,6 +49,7 @@ export default function SearchBar({
       </div>
       <InputGroup className="max-w-xs">
         <InputGroupInput
+        
           placeholder={placeholder}
           value={value}
           onChange={(e) => setValue(e.target.value)}

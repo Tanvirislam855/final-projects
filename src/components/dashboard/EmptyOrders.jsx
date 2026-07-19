@@ -14,7 +14,7 @@ export default function EmptyOrders() {
       </h2>
 
       <p className="text-muted-foreground max-w-md text-sm">
-        You haven&apos;t placed any orders yet. Start shopping to see your orders here.
+        Please start shopping to see your orders here.
       </p>
 
       <Button
@@ -25,7 +25,7 @@ export default function EmptyOrders() {
         }}
       >
         <Link href="/products">
-          Browse Products
+          See Products
         </Link>
       </Button>
     </div>

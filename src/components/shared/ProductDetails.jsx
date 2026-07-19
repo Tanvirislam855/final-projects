@@ -1,7 +1,7 @@
 'use client'
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Heart, ShoppingCart, ShieldCheck, Phone, User, Mail } from "lucide-react";
+import { ShoppingCart, ShieldCheck, Phone, User, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FadeLeft, FadeRight, FadeUp, StaggerContainer, StaggerItem } from "@/components/shared/AnimatedDiv";
 
@@ -47,12 +47,12 @@ export default function ProductDetailsPage({ product, user }) {
           <div className="space-y-8">
             <div className="flex flex-wrap gap-3">
               {product.category && (
-                <span className="rounded-full bg-[#ECEAE5] px-4 py-1 text-sm font-medium text-[#3E5F47]">
+                <span className="rounded-full bg-[#ECEAE5] px-4 py-1 text-sm font-medium">
                   {product.category}
                 </span>
               )}
               {product.condition && (
-                <span className="rounded-full bg-[#3E5F47]/10 px-4 py-1 text-sm font-medium text-[#3E5F47]">
+                <span className="rounded-full bg-[#3E5F47]/10 px-4 py-1 text-sm font-medium ">
                   Condition: {product.condition}
                 </span>
               )}
@@ -60,7 +60,7 @@ export default function ProductDetailsPage({ product, user }) {
 
             <div className="space-y-2">
               <h1 className="text-4xl font-bold tracking-tight text-foreground">{product.title}</h1>
-              <p className="text-5xl font-extrabold text-primary">৳{product.price ? product.price.toLocaleString() : "0"}</p>
+              <p className="text-5xl font-extrabold text-lime-600">৳{product.price ? product.price.toLocaleString() : "0"}</p>
             </div>
 
             <div className="space-y-3">
@@ -71,7 +71,7 @@ export default function ProductDetailsPage({ product, user }) {
             <div className="flex gap-4">
               <form className="w-full" action="/api/checkout_sessions" method="POST" onSubmit={handleBuyNow}>
                 <input type="hidden" name="productId" value={product._id} />
-                <Button type="submit" size="lg" className="flex-1 w-full rounded-full bg-[#3E5F47] hover:bg-[#304B38] text-white text-sm font-medium transition-all duration-200">
+                <Button type="submit" size="lg" className="flex-1 w-full rounded-full bg-black hover:bg-gray-700 text-white text-sm font-medium transition-all duration-200">
                   <ShoppingCart className="mr-2 h-5 w-5" />
                   Buy Now
                 </Button>
@@ -106,8 +106,8 @@ export default function ProductDetailsPage({ product, user }) {
               <FadeUp delay={0.2}>
                 <div className="rounded-3xl border p-6 bg-card">
                   <div className="mb-5 flex items-center gap-3">
-                    <ShieldCheck className="h-6 w-6 text-emerald-600" />
-                    <h3 className="text-xl font-bold">Seller Information</h3>
+                    <ShieldCheck className="h-6 w-6 text-blue-300" />
+                    <h3 className="text-xl font-bold text-blue-600">Seller Info</h3>
                   </div>
                   <StaggerContainer>
                     <div className="space-y-5">

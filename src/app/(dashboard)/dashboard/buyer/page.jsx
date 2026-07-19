@@ -18,7 +18,7 @@ export default async function BuyerDashboardOverview() {
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
           <p className="mt-2 text-muted-foreground">
-            Welcome back! Here&apos;s your activity overview.
+              your overview.
           </p>
         </div>
       </FadeUp>
@@ -42,7 +42,7 @@ export default async function BuyerDashboardOverview() {
               </div>
               <h2 className="text-4xl font-bold text-white">{orders?.length || 0}</h2>
               <p className="text-sm text-white/70 mt-1">Total Orders</p>
-              <p className="text-xs text-white/50 mt-2">Orders placed so far</p>
+              <p className="text-xs text-white/50 mt-2">Orders placed here</p>
             </div>
           </div>
         </StaggerItem>

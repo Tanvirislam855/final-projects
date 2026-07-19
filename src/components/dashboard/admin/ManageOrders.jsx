@@ -139,7 +139,7 @@ export default function ManageOrders({ orderData: orders }) {
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Manage Orders</h1>
           <p className="mt-1 text-muted-foreground">
-            Track customer deliveries, update order fulfillment status, and resolve marketplace disputes.
+            Track customer deliveries.
           </p>
         </div>
       </FadeUp>

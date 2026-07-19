@@ -102,7 +102,7 @@ function CheckoutModal({ item, onConfirm, onCancel }) {
               </div>
               <div>
                 <h2 className="text-white font-bold text-lg leading-tight">Order Summary</h2>
-                <p className="text-white/65 text-xs mt-0.5">Review your order before payment</p>
+                <p className="text-white/65 text-xs mt-0.5">Review before payment</p>
               </div>
             </div>
           </div>
@@ -136,10 +136,10 @@ function CheckoutModal({ item, onConfirm, onCancel }) {
               border: "1px solid rgba(62,95,71,0.13)",
             }}
           >
-            <p className="text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: "#3E5F47" }}>Delivery Information</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: "#3E5F47" }}>Delivery Info</p>
             <div className="flex items-start gap-2 text-xs text-gray-500">
               <Clock className="w-3.5 h-3.5 mt-0.5 shrink-0 text-[#3E5F47]" />
-              <span>Estimated delivery: <span className="font-medium text-gray-700">2–3 working days</span></span>
+              <span>Estimated delivery: <span className="font-medium text-gray-700">1–3 working days</span></span>
             </div>
             <div className="flex items-start gap-2 text-xs text-gray-500">
               <Shield className="w-3.5 h-3.5 mt-0.5 shrink-0 text-[#3E5F47]" />

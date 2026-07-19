@@ -10,8 +10,6 @@ import {
   SidebarHeader,
   SidebarMenu,
 } from "@/components/ui/sidebar";
-// Icon components are resolved inside the client component
-// to avoid passing non-plain objects from a Server Component.
 import Logo from "../shared/Logo";
 import { getUserSession } from "@/lib/core/session";
 import { DashboardSidebarNavItems } from "./DashboardSidebarNavItems";
@@ -149,8 +147,8 @@ export async function DashboardSidebar() {
       </SidebarContent>
 
       <SidebarFooter className="p-4">
-        <p className="text-sm text-muted-foreground">
-          © 2026 My App
+        <p className="text-sm font-bold text-black">
+          © 2026 My Website
         </p>
       </SidebarFooter>
     </Sidebar>
