@@ -151,7 +151,7 @@ export default function NotFound() {
           variants={itemVariants}
           className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground mb-4 font-heading"
         >
-          Lost in the Marketplace?
+          No wishlist Found!
         </motion.h1>
 
         {/* Subtitle */}
@@ -159,7 +159,7 @@ export default function NotFound() {
           variants={itemVariants}
           className="text-lg text-muted-foreground max-w-md mx-auto mb-8 leading-relaxed"
         >
-          The page you are looking for doesn&apos;t exist or has been moved to a new destination. Let&apos;s get you back on track!
+          
         </motion.p>
 
         {/* Search Bar container */}
@@ -170,7 +170,7 @@ export default function NotFound() {
           <form onSubmit={handleSearchSubmit} className="relative flex items-center">
             <input
               type="text"
-              placeholder="Search products, categories..."
+              placeholder="Search products"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
               className="w-full h-12 pl-4 pr-12 rounded-full border border-border bg-background/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all shadow-sm"
@@ -194,7 +194,7 @@ export default function NotFound() {
             asChild
             variant="default"
             size="lg"
-            className="w-full sm:w-auto rounded-full bg-[#3E5F47] hover:bg-[#2F4A37] text-white transition-all px-8 h-12 shadow-md hover:shadow-lg active:scale-[0.98]"
+            className="w-full sm:w-auto rounded-full bg-black hover:bg-gray-500 text-white transition-all px-8 h-12 shadow-md hover:shadow-lg active:scale-[0.98]"
           >
             <Link href="/" className="inline-flex items-center justify-center gap-2">
               <Home className="h-5 w-5" />
@@ -206,7 +206,7 @@ export default function NotFound() {
             asChild
             variant="outline"
             size="lg"
-            className="w-full sm:w-auto rounded-full border-border hover:bg-muted/50 transition-all px-8 h-12 shadow-sm active:scale-[0.98]"
+            className="w-full sm:w-auto rounded-full border-border hover:bg-gray-500 transition-all px-8 h-12 shadow-sm active:scale-[0.98]"
           >
             <Link href="/products" className="inline-flex items-center justify-center gap-2">
               <Package className="h-5 w-5" />
@@ -220,19 +220,19 @@ export default function NotFound() {
           variants={itemVariants}
           className="pt-6 border-t border-border w-full max-w-md flex justify-around text-sm text-muted-foreground"
         >
-          <Link href="/categories" className="hover:text-primary transition-colors flex items-center gap-1.5">
+          <Link href="/categories" className="hover:text-gray-500 transition-colors flex items-center gap-1.5">
             <Compass className="h-4 w-4" />
             <span>Categories</span>
           </Link>
           <span className="text-border">|</span>
-          <Link href="/signIn" className="hover:text-primary transition-colors flex items-center gap-1.5">
+          <Link href="/signIn" className="hover:text-gray-500 transition-colors flex items-center gap-1.5">
             <ShieldAlert className="h-4 w-4" />
             <span>Sign In</span>
           </Link>
           <span className="text-border">|</span>
           <button
             onClick={() => router.back()}
-            className="hover:text-primary transition-colors flex items-center gap-1.5 bg-transparent border-none cursor-pointer"
+            className="hover:text-gray-500 transition-colors flex items-center gap-1.5 bg-transparent border-none cursor-pointer"
           >
             <ArrowLeft className="h-4 w-4" />
             <span>Go Back</span>

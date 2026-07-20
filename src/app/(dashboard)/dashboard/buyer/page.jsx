@@ -29,7 +29,7 @@ export default async function BuyerDashboardOverview() {
           <div
             className="rounded-2xl p-6 relative overflow-hidden"
             style={{
-              background: "linear-gradient(135deg, #3E5F47 0%, #2c4534 100%)",
+              background: "linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)",
             }}
           >
             <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-white/5 -translate-y-1/2 translate-x-1/2" />
@@ -51,7 +51,7 @@ export default async function BuyerDashboardOverview() {
           <div
             className="rounded-2xl p-6 relative overflow-hidden"
             style={{
-              background: "linear-gradient(135deg, #4a7a5a 0%, #3a6248 100%)",
+              background: "linear-gradient( 135deg, #6b21a8 0%, #a855f7 100%)",
             }}
           >
             <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-white/5 -translate-y-1/2 translate-x-1/2" />
@@ -86,7 +86,7 @@ export default async function BuyerDashboardOverview() {
               </div>
               <h2 className="text-4xl font-bold text-white">{orders?.length || 0}</h2>
               <p className="text-sm text-white/70 mt-1">Recent Purchases</p>
-              <p className="text-xs text-white/50 mt-2">Latest bought items</p>
+              <p className="text-xs text-white/50 mt-2">New bought items</p>
             </div>
           </div>
         </StaggerItem>
@@ -98,11 +98,11 @@ export default async function BuyerDashboardOverview() {
           <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-xl" style={{ background: "rgba(62,95,71,0.1)" }}>
-                <ShoppingBag className="w-4 h-4" style={{ color: "#3E5F47" }} />
+                <ShoppingBag className="w-4 h-4" style={{ color: "#1e40af" }} />
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900">Recent Purchases</h3>
-                <p className="text-xs text-gray-500 mt-0.5">Your latest ordered items</p>
+                <p className="text-xs text-gray-500 mt-0.5">Your latest ordere</p>
               </div>
             </div>
             {orders?.length > 0 && (
@@ -139,9 +139,9 @@ export default async function BuyerDashboardOverview() {
             ) : (
               <div className="flex flex-col items-center justify-center py-12 text-center">
                 <div className="p-3 rounded-full mb-3" style={{ background: "rgba(62,95,71,0.08)" }}>
-                  <ShoppingBag className="w-6 h-6" style={{ color: "#3E5F47" }} />
+                  <ShoppingBag className="w-6 h-6" style={{ color: "#1e40af" }} />
                 </div>
-                <p className="text-sm font-medium text-gray-600">No orders yet</p>
+                <p className="text-sm font-medium text-gray-600">No orders found</p>
                 <p className="text-xs text-gray-400 mt-1">Start shopping to see your purchases here</p>
               </div>
             )}

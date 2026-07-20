@@ -49,7 +49,7 @@ export default async function CategoryProductsPage({ params }) {
         <div className="container mx-auto py-10 px-4">
             <div className="flex items-center gap-3 mb-2">
                 <div className="p-2 rounded-xl" style={{ background: "rgba(62,95,71,0.1)" }}>
-                    <Package className="w-5 h-5" style={{ color: "#3E5F47" }} />
+                    <Package className="w-5 h-5" style={{ color: "#6b21a8" }} />
                 </div>
                 <h1 className="text-3xl font-bold tracking-tight capitalize">
                     {decodedCategory}
@@ -62,19 +62,19 @@ export default async function CategoryProductsPage({ params }) {
             {!products || products.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-20 text-center max-w-md mx-auto">
                     <div className="p-4 rounded-full mb-4" style={{ background: "rgba(62,95,71,0.08)" }}>
-                        <Package className="w-10 h-10" style={{ color: "#3E5F47" }} />
+                        <Package className="w-10 h-10" style={{ color: "#6b21a8" }} />
                     </div>
                     <h2 className="text-xl font-semibold text-gray-900 mb-2">
                         No Products Found
                     </h2>
                     <p className="text-muted-foreground text-sm mb-8">
-                        There are no products in &quot;{decodedCategory}&quot; yet. Check back later or browse other categories.
+                         &quot;{decodedCategory}&quot; Check back later or browse other categories.
                     </p>
                     <Link
                         href="/categories"
                         className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white transition-all active:scale-95"
                         style={{
-                            background: "linear-gradient(135deg, #3E5F47 0%, #2c4534 100%)",
+                            background: "linear-gradient(135deg, #6b21a8 0%, #a855f7 100%)",
                             boxShadow: "0 4px 16px rgba(62,95,71,0.3)",
                         }}
                     >

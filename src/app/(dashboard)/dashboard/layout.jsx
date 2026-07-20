@@ -20,7 +20,7 @@ const DashboardLayout = async ({ children }) => {
           <SidebarTrigger />
         </div>
 
-        <div className="p-6">
+        <div className="p-6 bg-gray-500">
           {children}
         </div>
         <Toaster 
