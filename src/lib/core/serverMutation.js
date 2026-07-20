@@ -4,7 +4,8 @@ import { redirect } from "next/navigation";
 import { getUserSession } from "./session"
 import { getToken } from "./jwtToke";
 
-const baseUrl = process.env.NEXT_PUBLIC_SERVER
+// const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL
+const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || process.env.NEXT_PUBLIC_SERVER || 'http://localhost:8000';
 
 
 export const serverMutation = async (url, data = null, method = 'POST') => {

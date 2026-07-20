@@ -135,12 +135,12 @@ function OrderDetailModal({ order, onClose }) {
           <div
             className="px-6 pt-6 pb-5"
             style={{
-              background: "linear-gradient(135deg,#3E5F47 0%,#2c4534 100%)",
+              background: "linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)",
             }}
           >
             <div className="flex items-center gap-3">
               <div className="p-2.5 bg-white/20 rounded-xl backdrop-blur-sm">
-                <ShoppingBag className="w-5 h-5 text-white" />
+                <ShoppingBag className="w-5 h-5 text-black" />
               </div>
               <div>
                 <h2 className="text-white font-bold text-lg leading-tight">Order Details</h2>
@@ -154,27 +154,27 @@ function OrderDetailModal({ order, onClose }) {
           </div>
 
           <div className="px-6 pt-5 pb-2">
-            <p className="text-[10px] font-bold uppercase tracking-widest mb-3" style={{ color: "#3E5F47" }}>Product Information</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest mb-3" style={{ color: "#5B21B6" }}>Product Information</p>
             <DetailRow icon={ShoppingBag} label="Product Name" value={order.productName} />
             <DetailRow icon={CreditCard} label="Price" value={`৳${order.price.toLocaleString()}`} accent />
             <DetailRow icon={Hash} label="Product ID" value={order.productId} mono />
           </div>
 
           <div className="mx-6 mt-2 mb-2 rounded-2xl px-4 py-1" style={{ background: "rgba(62,95,71,0.05)", border: "1px solid rgba(62,95,71,0.1)" }}>
-            <p className="text-[10px] font-bold uppercase tracking-widest mt-3 mb-1" style={{ color: "#3E5F47" }}>Payment Details</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest mt-3 mb-1" style={{ color: "#5B21B6" }}>Payment Details</p>
             <DetailRow icon={Receipt} label="Transaction ID" value={order.transactionId} mono />
             <DetailRow icon={Clock} label="Payment Date" value={paymentDate} />
             <DetailRow icon={CheckCircle2} label="Payment Status" value={order.paymentStatus.toUpperCase()} accent />
           </div>
 
           <div className="px-6 pt-3 pb-2">
-            <p className="text-[10px] font-bold uppercase tracking-widest mb-3" style={{ color: "#3E5F47" }}>Buyer Information</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest mb-3" style={{ color: "#5B21B6" }}>Buyer Information</p>
             <DetailRow icon={User} label="Buyer Name" value={order.buyerInfo.userName} />
             <DetailRow icon={Receipt} label="Email" value={order.buyerInfo.customerEmail} mono />
           </div>
 
           <div className="mx-6 mt-2 mb-4 rounded-2xl px-4 py-1" style={{ background: "rgba(62,95,71,0.05)", border: "1px solid rgba(62,95,71,0.1)" }}>
-            <p className="text-[10px] font-bold uppercase tracking-widest mt-3 mb-1" style={{ color: "#3E5F47" }}>Seller Information</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest mt-3 mb-1" style={{ color: "#5B21B6" }}>Seller Information</p>
             <DetailRow icon={Store} label="Seller Name" value={order.sellerInfo.name} />
             <DetailRow icon={Receipt} label="Seller Email" value={order.sellerInfo.email} mono />
             <DetailRow icon={CreditCard} label="Phone" value={order.sellerInfo.phone} />
@@ -185,7 +185,7 @@ function OrderDetailModal({ order, onClose }) {
               onClick={onClose}
               className="w-full py-3 rounded-full text-sm font-semibold text-white active:scale-95 transition-all duration-200"
               style={{
-                background: "linear-gradient(135deg,#3E5F47 0%,#2c4534 100%)",
+                background: "linear-gradient(135deg, #8b5cf6 0%, #5b21b6 100%)",
                 boxShadow: "0 4px 16px rgba(62,95,71,0.3)",
               }}
             >

@@ -81,7 +81,7 @@ export default function SalesAnalytics() {
       {/* Header */}
       <FadeUp>
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Sales Analytics</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Analytics</h1>
           <p className="mt-1 text-muted-foreground">
             Understand your store&apos;s growth, item stock levels, order volume trends, and category distribution.
           </p>

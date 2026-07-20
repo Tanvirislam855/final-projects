@@ -250,7 +250,7 @@ export default function WishlistClient({ wishlist }) {
                     <Button
                       type="button"
                       size="lg"
-                      className="flex-1 w-full rounded-full text-base font-medium"
+                      className="flex-1 w-full rounded-full text-base font-medium bg-black hover:bg-gray-500"
                       onClick={() => openModal(item)}
                     >
                       <ShoppingCart className="mr-2 h-5 w-5" />
@@ -269,7 +269,7 @@ export default function WishlistClient({ wishlist }) {
                           </div>
                           <AlertDialogTitle>Remove from Wishlist?</AlertDialogTitle>
                           <AlertDialogDescription>
-                            Are you sure you want to remove <span className="font-medium text-foreground">{item.title}</span> from your wishlist? This action cannot be undone.
+                             You want to remove? <span className="font-medium text-foreground">{item.title}</span> from your wishlist? This action cannot be undone.
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
