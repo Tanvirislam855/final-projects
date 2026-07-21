@@ -3,7 +3,7 @@ import { FadeUp, StaggerContainer, StaggerItem } from "@/components/shared/Anima
 
 const featured = {
   icon: Recycle,
-  stat: "10M",
+  stat: "12k",
   statUnit: "kg of CO2 diverted / year",
   title: "Giving Items a Second Life",
   description: "By extending the lifecycle of everyday goods, our community directly prevents millions of kilograms of usable products from rotting in local trash piles.",
