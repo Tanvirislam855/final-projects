@@ -12,19 +12,16 @@ const featured = {
 const benefits = [
   {
     icon: Trees,
-    stat: "65%",
     title: "Lower Environmental Impact",
     description: "Choosing pre-owned dramatically cuts down the heavy industrial processing required to manufacture brand-new goods from scratch.",
   },
   {
     icon: Droplets,
-    stat: "4,200L",
     title: "Eco-Conscious Resource Saving",
     description: "Every successful trade helps bypass the massive manufacturing supply chains that exhaust vital planetary water reserves.",
   },
   {
     icon: Factory,
-    stat: "Zero",
     title: "Minimal Waste Delivery",
     description: "Skip the heavy retail boxes and industrial factory wrapping. Simple, direct peer-to-peer trading keeps excess plastic out of the loop.",
   },

@@ -18,7 +18,7 @@ import dynamic from 'next/dynamic';
 import { motion } from "framer-motion";
 
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
-import signupAnimation from "../../../../public/lottie/signup.json";
+import signupAnimation from "../../../../public/man.json";
 
 const SignUpPage = () => {
   const router = useRouter();
@@ -126,8 +126,8 @@ const SignUpPage = () => {
             <Lottie animationData={signupAnimation} loop={true} />
           </div>
           <div className="relative z-10 mt-8 space-y-2 text-center">
-            <h2 className="text-2xl font-bold tracking-tight">Join NeoMarket Today</h2>
-            <p className="text-muted-foreground">Create an account to unlock exclusive deals, personalized recommendations, and a seamless shopping experience.</p>
+            <h2 className="text-2xl font-bold tracking-tight">Join SwapBD</h2>
+            <p className="text-muted-foreground"></p>
           </div>
           <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-primary/5 to-transparent z-0 pointer-events-none" />
         </motion.div>
@@ -145,7 +145,7 @@ const SignUpPage = () => {
             transition={{ delay: 0.35 }}
             className="text-center md:text-left space-y-1"
           >
-            <h1 className="text-3xl font-bold tracking-tight">Sign Up</h1>
+            <h1 className="text-3xl font-bold tracking-tight ">Sign Up</h1>
             <p className="text-sm text-muted-foreground">Create an account to get started.</p>
           </motion.div>
 
@@ -301,7 +301,7 @@ const SignUpPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 }}
             >
-              <Button type="submit" disabled={loading} className="w-full mt-2 font-medium">
+              <Button type="submit" disabled={loading} className="w-full mt-2 font-medium bg-black hover:bg-gray-500">
                 {loading ? "Signing Up..." : "Sign Up"}
               </Button>
             </motion.div>
@@ -344,7 +344,7 @@ const SignUpPage = () => {
             className="text-center text-sm text-muted-foreground pt-4"
           >
             Already have an account?{" "}
-            <Link href="/signIn" className="font-medium text-primary hover:underline transition-all">
+            <Link href="/signIn" className="font-medium hover:underline transition-all text-red-600">
               Sign In
             </Link>
           </motion.p>

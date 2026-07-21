@@ -62,7 +62,7 @@ export default function MyProductsPage({ productData: products }) {
           </p>
         </div>
         <Link href={'/dashboard/seller/add-product'}>
-          <Button className="rounded-xl">
+          <Button className="rounded-xl bg-black text-white hover:bg-blue-300">
             <Plus className="mr-2 h-4 w-4" />
             Add Product
           </Button>
@@ -173,7 +173,7 @@ export default function MyProductsPage({ productData: products }) {
                               <span className="font-medium text-foreground">
                                 {product.productName}
                               </span>
-                              ? This action cannot be undone.
+                               This action cannot be undone.
                             </AlertDialogDescription>
                           </AlertDialogHeader>
                           <AlertDialogFooter>
@@ -219,7 +219,7 @@ export default function MyProductsPage({ productData: products }) {
           <div className="flex flex-col items-center py-16 text-center">
             <Package className="mb-4 h-12 w-12 text-muted-foreground" />
             <h3 className="text-lg font-semibold">No products found</h3>
-            <p className="mt-2 text-muted-foreground">Start by adding your first product.</p>
+            <p className="mt-2 text-muted-foreground"> Adding your first product.</p>
           </div>
         ) : (
           products.map((product) => (

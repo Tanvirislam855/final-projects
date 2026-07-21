@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { authClient } from "@/lib/auth-client";
 import dynamic from 'next/dynamic';
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
-import loginAnimation from "../../../../public/lottie/login.json";
+import loginAnimation from "../../../../public/employee.json";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
@@ -87,8 +87,8 @@ const handleGoogleSignIn = async () => {
             <Lottie animationData={loginAnimation} loop={true} />
           </div>
           <div className="relative z-10 mt-8 space-y-2 text-center">
-            <h2 className="text-2xl font-bold tracking-tight">Welcome Back to NeoMarket</h2>
-            <p className="text-muted-foreground">Securely sign in to access your dashboard and explore our latest collections.</p>
+            <h2 className="text-2xl font-bold tracking-tight">Welcome Back to SwapBD</h2>
+            <p className="text-muted-foreground">Explore our latest collections.</p>
           </div>
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/5 to-transparent z-0 pointer-events-none" />
         </motion.div>
@@ -158,7 +158,7 @@ const handleGoogleSignIn = async () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
             >
-              <Button type="submit" className="w-full mt-2 font-medium">
+              <Button type="submit" className="w-full mt-2 font-medium bg-black hover:bg-gray-500">
                 Sign In
               </Button>
             </motion.div>
@@ -201,7 +201,7 @@ const handleGoogleSignIn = async () => {
             className="text-center text-sm text-muted-foreground pt-4"
           >
             Don&apos;t have an account?{" "}
-            <Link href="/signup" className="font-medium text-primary hover:underline transition-all">
+            <Link href="/signup" className="font-medium hover:underline transition-all text-black">
               Sign Up
             </Link>
           </motion.p>

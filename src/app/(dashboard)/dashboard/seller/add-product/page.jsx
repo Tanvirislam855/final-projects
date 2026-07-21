@@ -28,8 +28,7 @@ const CATEGORIES = [
   { title: "Furniture" },
   { title: "Gaming" },
   { title: "Home Appliances" },
-  { title: "Musical Instruments" },
-  { title: "Sports" },
+  { title: "Books" },
 ];
 
 const CONDITIONS = ["Good", "Like New"];
@@ -168,7 +167,7 @@ const uploadToCloudinary = async (file) => {
       <Card className="w-full max-w-3xl mx-auto rounded-2xl shadow-md border-muted bg-card">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold tracking-tight">Add New Product</CardTitle>
-          <CardDescription>Fill out the details to list your item in the marketplace.</CardDescription>
+          <CardDescription>Fill out the details to list your item.</CardDescription>
         </CardHeader>
 
         <CardContent>
@@ -211,7 +210,7 @@ const uploadToCloudinary = async (file) => {
               className="space-y-2"
             >
               <Label htmlFor="title">Product Title</Label>
-              <Input id="title" placeholder="e.g., Sony WH-1000XM4 Headphones" value={form.title} onChange={handleChange("title")} className={errors.title ? "border-destructive focus-visible:ring-destructive" : ""} />
+              <Input id="title" placeholder="" value={form.title} onChange={handleChange("title")} className={errors.title ? "border-destructive focus-visible:ring-destructive" : ""} />
               {errors.title && <p className="text-xs font-medium text-destructive">{errors.title}</p>}
             </motion.div>
 
@@ -276,7 +275,7 @@ const uploadToCloudinary = async (file) => {
               className="space-y-2"
             >
               <Label htmlFor="description">Description</Label>
-              <Textarea id="description" placeholder="Provide a detailed description of the product's features and inclusions..." rows={5} value={form.description} onChange={handleChange("description")} className="resize-none" />
+              <Textarea id="description" placeholder="" rows={5} value={form.description} onChange={handleChange("description")} className="resize-none" />
             </motion.div>
 
             <motion.div
@@ -284,7 +283,7 @@ const uploadToCloudinary = async (file) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.35 }}
             >
-              <Button type="submit" disabled={isSaving || isUploading} className="w-full h-11 rounded-xl font-medium transition-all">
+              <Button type="submit" disabled={isSaving || isUploading} className="w-full h-11 rounded-xl font-medium transition-all bg-black hover:bg-gray-500">
                 {isSaving || isUploading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />

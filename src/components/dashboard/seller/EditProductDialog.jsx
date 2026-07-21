@@ -46,14 +46,14 @@ const categories = [
   "Furniture",
   "Gaming",
   "Home Appliances",
-  "Musical Instruments",
-  "Sports",
+  "Books",
+  
 ];
 
 const conditions = ["Like New", "Good", "Fair"];
 
 const statusStyles = {
-  available: "bg-[#3E5F47] text-white",
+  available: "bg-black text-white",
   sold: "bg-zinc-400 text-white",
   pending: "bg-amber-500 text-white",
 };
@@ -112,7 +112,7 @@ export default function EditProductDialog({ product }) {
       <DialogTrigger asChild>
         <Button
           variant="outline"
-          className="gap-2 rounded-full border-[#3E5F47]/30 bg-[#ECEAE5] text-[#3E5F47] hover:bg-[#dfddd8] hover:text-[#304B38] hover:border-[#3E5F47]/50 transition-all duration-200 text-xs font-semibold uppercase tracking-[0.15em]"
+          className="gap-2 rounded-full border-[#3E5F47]/30 bg-[#ECEAE5] text-black] hover:bg-[#dfddd8] hover:text-[#304B38] hover:border-[#3E5F47]/50 transition-all duration-200 text-xs font-semibold uppercase tracking-[0.15em]"
         >
           <Pencil className="h-3.5 w-3.5" />
           Edit
@@ -151,7 +151,7 @@ export default function EditProductDialog({ product }) {
                 <Input
                   name="title"
                   defaultValue={product.title}
-                  placeholder="e.g. Sony WH-1000XM5 Headphones"
+                  placeholder=""
                   className="rounded-xl border-[#ECEAE5] bg-[#ECEAE5]/40 focus-visible:ring-[#3E5F47] focus-visible:border-[#3E5F47] placeholder:text-muted-foreground/60 transition"
                 />
               </div>
@@ -231,7 +231,7 @@ export default function EditProductDialog({ product }) {
                         className="rounded-xl focus:bg-[#ECEAE5] focus:text-[#3E5F47]"
                       >
                         <span className="flex items-center gap-2">
-                          <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                          <span className="h-2 w-2 rounded-full bg-amber-700" />
                           Available
                         </span>
                       </SelectItem>

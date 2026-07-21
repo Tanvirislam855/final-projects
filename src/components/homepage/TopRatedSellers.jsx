@@ -3,9 +3,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { FadeUp, StaggerContainer, StaggerItem } from "@/components/shared/AnimatedDiv";
 
 const sellers = [
-  { name: "Sophia L.", rating: "5.0", badge: "PREMIUM SELLER", listings: 31, category: "Smart Devices", image: "https://i.pravatar.cc/150?img=5" },
-  { name: "James B.", rating: "4.9", badge: "QUICK SHIPPER", listings: 15, category: "Home & Living", image: "https://i.pravatar.cc/150?img=12" },
-  { name: "Mia C.", rating: "4.8", badge: "HIGHLY RECOMMENDED", listings: 47, category: "Fashion & Apparel", image: "https://i.pravatar.cc/150?img=32" }
+  { name: "Sophia L.", rating: "5.0", badge: "PREMIUM SELLER", listings: 10, category: " Devices", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNpAd12N2LvCga-pKjBBTgGYyGpy20o9zWXUhc1nRh3A&s=10" },
+  { name: "James B.", rating: "4.9", badge: "QUICK SHIPPER", listings: 11, category: "Home ", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9j45GeK9J9Hoa2Kqx9vxKKaz_bCOrAxBKcgvrB7I-Ng&s=10" },
+  { name: "Mia C.", rating: "4.8", badge: "HIGHLY RECOMMENDED", listings: 23, category: "Fashion", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQN9usXUJWViP387nZvQefOlHBFpotc99mhkoUPpLpuHA&s=10" }
 ];
 
 export default function TopRatedSellers() {

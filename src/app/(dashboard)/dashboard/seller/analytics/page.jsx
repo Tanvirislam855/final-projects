@@ -33,30 +33,30 @@ const SALES_GROWTH_DATA = [
 
 // ---- 2. Mock Data: Product Stock vs Sales ----
 const PRODUCT_STOCK_SALES_DATA = [
-  { name: "iPhone 13", sold: 142, stock: 35 },
-  { name: "Sony WH-1000", sold: 118, stock: 42 },
-  { name: "Nike Air Max", sold: 97, stock: 55 },
-  { name: "Dell XPS 13", sold: 64, stock: 18 },
-  { name: "Kindle Paper", sold: 53, stock: 80 },
+  { name: "PS5", sold: 10, stock: 25 },
+  { name: "Sony WH-1000", sold: 18, stock: 40 },
+  { name: "Bed", sold: 100, stock: 155 },
+  { name: "Smart Kitch", sold: 44, stock: 118 },
+  { name: "Islamic Books", sold: 65, stock: 800 },
 ];
 
 // ---- 3. Mock Data: Monthly Orders & GMV ----
 const MONTHLY_ORDERS_DATA = [
-  { month: "Jan", orders: 45, volume: 12000 },
-  { month: "Feb", orders: 68, volume: 18500 },
-  { month: "Mar", orders: 58, volume: 16000 },
-  { month: "Apr", orders: 85, volume: 24000 },
-  { month: "May", orders: 112, volume: 29500 },
-  { month: "Jun", orders: 134, volume: 35600 },
+  { month: "Jan", orders: 20, volume: 11000 },
+  { month: "Feb", orders: 58, volume: 1800 },
+  { month: "Mar", orders: 78, volume: 1300 },
+  { month: "Apr", orders: 70, volume: 1200 },
+  { month: "May", orders: 21, volume: 1780 },
+  { month: "Jun", orders: 29, volume: 5500 },
 ];
 
 // ---- 4. Mock Data: Category Sales Split (Distribution %) ----
 const CATEGORY_DISTRIBUTION_DATA = [
-  { name: "Electronics", value: 45, color: "#3E5F47" },
-  { name: "Audio & Music", value: 25, color: "#4d7c5b" },
-  { name: "Apparel & Shoes", value: 15, color: "#60a5fa" },
-  { name: "Accessories", value: 10, color: "#fbbf24" },
-  { name: "Books & Media", value: 5, color: "#f87171" },
+  { name: "Electronics", value: 55, color: "#3E5F47" },
+  { name: "Books", value: 35, color: "#4d7c5b" },
+  { name: "Shoes", value: 10, color: "#60a5fa" },
+  { name: "Accessories", value: 15, color: "#fbbf24" },
+  { name: " Gaming", value: 9, color: "#f87171" },
 ];
 
 // Custom Tooltip component matching AdminAnalytics
@@ -95,8 +95,8 @@ export default function SalesAnalytics() {
           <StaggerItem>
             <Card>
               <CardHeader>
-                <CardTitle className="text-base">Sales & Revenue Growth</CardTitle>
-                <CardDescription>Monthly performance showing revenue growth vs units sold</CardDescription>
+                <CardTitle className="text-base">Sales & Growth</CardTitle>
+                <CardDescription> units sold</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="h-[300px] w-full">
@@ -121,7 +121,7 @@ export default function SalesAnalytics() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-base">Product Stock vs Sales</CardTitle>
-                <CardDescription>Sold quantities vs remaining stock of top-selling items</CardDescription>
+                <CardDescription>top-selling items</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="h-[300px] w-full">
@@ -146,7 +146,7 @@ export default function SalesAnalytics() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-base">Monthly Orders & Revenue Volume</CardTitle>
-                <CardDescription>Total checkout orders count and gross merchandise volume (GMV)</CardDescription>
+                <CardDescription>Total checkout orders</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="h-[300px] w-full">
@@ -177,7 +177,7 @@ export default function SalesAnalytics() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-base">Category Sales Split</CardTitle>
-                <CardDescription>Percentage distribution of sales across different product categories</CardDescription>
+                <CardDescription> product categories</CardDescription>
               </CardHeader>
               <CardContent className="flex flex-col items-center justify-center">
                 <div className="h-[250px] w-full max-w-[280px]">
